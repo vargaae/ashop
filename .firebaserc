@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ashop-23e4c"
+  },
+  "targets": {
+    "ashop-23e4c": {
+      "hosting": {
+        "ashop": [
+          "ashop-23e4c"
+        ]
+      }
+    }
+  }
+}
