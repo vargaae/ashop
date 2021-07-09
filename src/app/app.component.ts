@@ -2,11 +2,16 @@ import { UserService } from './services/user.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { fade, slide } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    fade,
+    slide
+  ]
 })
 export class AppComponent {
 

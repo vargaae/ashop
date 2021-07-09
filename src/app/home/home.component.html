@@ -1,3 +1,17 @@
-<h4>
-  Welcome to my A-Shop Application!
+<!-- Animated welcome text -->
+<div @fade>
+  <h4 *ngIf="user$ | async as user; else anonymousUser">
+    Dear {{ user.displayName }}, <br>
 </h4>
+<ng-template #anonymousUser>
+<h4>
+    Dear {{ name }},
+</h4>
+</ng-template>
+</div>
+<div @slide>
+  <h4>
+    Welcome to my A-OrganicShop Application!
+  </h4>
+</div>
+
