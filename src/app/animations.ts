@@ -10,6 +10,15 @@ export let fade = trigger('fade', [
   ]),
 ]);
 
+export let fadeLogin = trigger('fade', [
+
+  state('void', style({opacity: 0})),
+
+  transition(':enter, :leave', [
+    animate(2000)
+  ]),
+]);
+
 export let bounceOutLeftAnimation = animation(
   animate('0.5s ease-out', keyframes([
     style({ 

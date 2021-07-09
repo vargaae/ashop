@@ -1,7 +1,8 @@
+import { ProductService } from './../../services/product.service';
 import { CategoryService } from './../../services/category.service';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireList } from '@angular/fire/database';
 import { fade, slide } from 'src/app/animations';
+
 
 @Component({
   selector: 'app-product-form',
@@ -15,8 +16,15 @@ import { fade, slide } from 'src/app/animations';
 export class ProductFormComponent implements OnInit {
   categories$;
 
-  constructor(categoryService: CategoryService) { 
-    this.categories$ = categoryService.getCategories().valueChanges();
+  constructor(
+    categoryService: CategoryService,
+    private productService: ProductService
+    ) { 
+    this.categories$ = categoryService.getCategories();
+  }
+
+  save(product) {
+    this.productService.create(product);
   }
 
   ngOnInit() {
