@@ -34,6 +34,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CustomFormsModule } from 'ng2-validation';
+
 import { AuthGuard } from './services/auth.guard';
 import { AdminAuthGuard } from './services/admin-auth.guard';
 import { UserService } from './services/user.service';
@@ -61,6 +63,7 @@ import { ProductService } from './services/product.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    CustomFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
         AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
