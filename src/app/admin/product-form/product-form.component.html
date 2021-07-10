@@ -1,4 +1,5 @@
 <div class="row">
+
     <div class="col-md-6">
         <form #f="ngForm" (ngSubmit)="save(f.value)">
             <div @slide class="mb-3">
@@ -94,13 +95,15 @@
             <button @fade class="btn btn-primary mb-3" [disabled]="!f.valid">Save</button>
         </form>
     </div>
+
     <div class="col-md-6">
         <div *ngIf="title.value" class="card" style="width: 20rem;">
             <img [src]="imageUrl.value" class="card-img-top">
             <div class="card-body">
-              <h5 class="card-title">{{ title.value }}</h5>
+              <h3 class="card-title">{{ title.value }}</h3>
               <p class="card-text">{{ price.value | currency:'USD':true }}</p>
             </div>
           </div>
     </div>
+
 </div>
