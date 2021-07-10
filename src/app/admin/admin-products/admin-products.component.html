@@ -1,3 +1,26 @@
-MANAGE PRODUCTS:
-<br>
+<p>TO MANAGE PRODUCTS:</p>
+
+<p>
 <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products$ | async">
+            <td><img [src]="p.payload.val().imageUrl" class="card-img-top" style="width: 80px;"></td>
+            <td>{{ p.payload.val().title }}</td>
+            <td>{{ p.payload.val().price | currency:'USD':true  }}</td>
+            <td>
+                <a [routerLink]="['/admin/admin-products/', p.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
