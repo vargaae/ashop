@@ -27,7 +27,7 @@ export class ProductFormComponent implements OnInit {
 
   save(product) {
     this.productService.create(product);
-    this.router.navigate(['/admin/products']);
+    this.router.navigate(['/admin/admin-products']);
   }
 
   ngOnInit() {
