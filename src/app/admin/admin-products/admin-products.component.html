@@ -4,6 +4,15 @@
 <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
 
+<p>
+    <input 
+        #query
+        (keyup)="filter(query.value)" 
+        type="text" 
+        class="form-control"
+        placeholder="Search...">
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -14,10 +23,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async">
-            <td><img [src]="p.payload.val().imageUrl" class="card-img-top" style="width: 80px;"></td>
-            <td>{{ p.payload.val().title }}</td>
-            <td>{{ p.payload.val().price | currency:'USD':true  }}</td>
+        <tr *ngFor="let p of filteredProducts">
+            <td><img [src]="p.imageUrl" class="card-img-top" style="width: 80px;"></td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.price | currency:'USD':true  }}</td>
             <td>
                 <a [routerLink]="['/admin/products/', p.key]">Edit</a>
             </td>

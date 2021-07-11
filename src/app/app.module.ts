@@ -42,6 +42,7 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
+import { SearchPipe } from './common/search.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ProductService } from './services/product.service';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
