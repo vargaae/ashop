@@ -2,11 +2,16 @@ import { ProductService } from './../../services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { Subscription } from 'rxjs';
+import { fade, slide } from 'src/app/animations';
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.css']
+  styleUrls: ['./admin-products.component.css'],
+  animations: [
+    fade,
+    slide
+  ]
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   name = '';

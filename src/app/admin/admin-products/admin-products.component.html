@@ -1,4 +1,4 @@
-<p>TO MANAGE PRODUCTS:</p>
+<div @fade class="mb-3"><p>TO MANAGE PRODUCTS FOR ADMINS:</p>
 
 <p>
 <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
@@ -12,11 +12,13 @@
         class="form-control"
         placeholder="Search...">
 </p>
+</div>
 
-<table class="table">
+<div @fade class="mb-3">
+<table class="table table-dark table-striped table-hover">
     <thead>
         <tr>
-            <th>Image</th>
+            <th>OUR PRODUCTS<br>-> Image</th>
             <th>Title</th>
             <th>Price</th>
             <th></th>
@@ -28,8 +30,13 @@
             <td>{{ p.title }}</td>
             <td>{{ p.price | currency:'USD':true  }}</td>
             <td>
-                <a [routerLink]="['/admin/products/', p.id]">Edit</a>
+                <a 
+                    [routerLink]="['/admin/products/', p.id]" 
+                    class="nav-link">
+                    Edit
+                </a>
             </td>
         </tr>
     </tbody>
 </table>
+</div>

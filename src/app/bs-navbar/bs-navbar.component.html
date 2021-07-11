@@ -1,4 +1,4 @@
-<nav @fade class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+<nav @fade class="navbar navbar-expand navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/">A'-O</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,8 +14,8 @@
             <a ngbDropdownToggle class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
               {{ appUser.name }}
             </a>
-            <ul ngbDropdownMenu class="dropdown-menu">
-              
+            <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark">
+              <!-- <li><a class="dropdown-item active" routerLink="/">Get Back Home</a></li> -->
               <ng-container *ngIf="appUser.isAdmin">
                   <li><a ngbDropdownItem class="dropdown-item" routerLink="/admin/admin-orders">Manage Orders</a></li>
                   <li><a ngbDropdownItem class="dropdown-item" routerLink="/admin/admin-products">Manage Products</a></li>
