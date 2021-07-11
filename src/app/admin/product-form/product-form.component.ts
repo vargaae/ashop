@@ -18,10 +18,8 @@ import { Product } from '../../models/product';
 })
 export class ProductFormComponent implements OnInit {
   categories$;
-  // products = Product[];
-  product = {};
   id;
-  // product: Product={} as Product;
+  product: Product={} as Product;
 
   constructor(
     private router: Router,

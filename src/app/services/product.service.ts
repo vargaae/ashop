@@ -15,7 +15,7 @@ export class ProductService {
     return this.db.list('/products').push(product);
   }
 
-  getAll(): Observable<Product[]> {
+  getAll() {
     return this.db.list<Product>('/products')
         .snapshotChanges()
         .pipe(
@@ -30,8 +30,7 @@ export class ProductService {
 }
 
   get(productId) {
-    return this.db.object('/products/' + productId)
-    .snapshotChanges();
+    return this.db.object('/products/' + productId).valueChanges();
   }
 
   update(productId, product) {

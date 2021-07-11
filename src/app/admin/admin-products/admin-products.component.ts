@@ -9,7 +9,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  // products$;
+  name = '';
+  email = "p.title";
+
+  onKeyPressed() {
+    console.log(this.email);
+  }
+
   products: Product[];
   filteredProducts: any[];
   subscription: Subscription;
