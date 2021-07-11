@@ -2,7 +2,8 @@ import { UserService } from './services/user.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { fade, slide } from './animations';
+import { fade, slide, bounceOutLeftAnimation } from './animations';
+import { animate, style, transition, trigger, useAnimation } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,18 @@ import { fade, slide } from './animations';
   styleUrls: ['./app.component.css'],
   animations: [
     fade,
-    slide
+    slide,
+    trigger('todoAnimation', [
+      transition(':enter', [
+        style({opacity: 0.6, backgroundColor: 'blue'}),
+        animate(2000)
+      ]),
+      transition(':leave', [
+        style({backgroundColor: 'blue'}),
+        animate(1000),
+        useAnimation(bounceOutLeftAnimation)
+      ])
+    ])
   ]
 })
 export class AppComponent {

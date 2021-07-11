@@ -6,7 +6,7 @@ export let fade = trigger('fade', [
   state('void', style({opacity: 0})),
 
   transition(':enter, :leave', [
-    animate('3s 1.5s cubic-bezier(.17,.67,.83,.67)')
+    animate('2s 1.2s ease-out')
   ]),
 ]);
 
@@ -20,7 +20,7 @@ export let fadeLogin = trigger('fade', [
 ]);
 
 export let bounceOutLeftAnimation = animation(
-  animate('0.5s ease-out', keyframes([
+  animate('0.5s cubic-bezier(.17,.67,.83,.67)', keyframes([
     style({ 
       offset: .2, 
       opacity: 1,

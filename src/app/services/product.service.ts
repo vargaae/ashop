@@ -1,7 +1,6 @@
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { Product } from '../models/product';
 
 @Injectable({

@@ -14,13 +14,6 @@ import { fade, slide } from 'src/app/animations';
   ]
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  name = '';
-  email = "p.title";
-
-  onKeyPressed() {
-    console.log(this.email);
-  }
-
   products: Product[];
   filteredProducts: any[];
   subscription: Subscription;
