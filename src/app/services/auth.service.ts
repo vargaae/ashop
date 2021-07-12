@@ -2,7 +2,7 @@ import { UserService } from './user.service';
 import { AppUser } from '../models/app-user';
 import { Injectable } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
@@ -17,6 +17,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute, 
+    private router: Router, 
     private afAuth: AngularFireAuth
     ) {
       this.user$ = afAuth.authState;
@@ -30,6 +31,7 @@ export class AuthService {
 
  logout(): void {
   this.afAuth.signOut();
+  this.router.navigate(['/login']);
 }
 
 get appUser$() : Observable<AppUser> {

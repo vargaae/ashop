@@ -27,7 +27,7 @@ import { animate, style, transition, trigger, useAnimation } from '@angular/anim
 })
 export class AppComponent {
 
-  title = "Andras Varga's GastroApp Project 2021";
+  title = "Andras Varga's Organic Shop Project 2021";
 
   constructor(
     private userService: UserService, 

@@ -42,7 +42,7 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
-import { SearchPipe } from './common/search.pipe';
+import { DataTableModule } from 'angular5-data-table';
 
 @NgModule({
   declarations: [
@@ -57,8 +57,7 @@ import { SearchPipe } from './common/search.pipe';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent,
-    SearchPipe
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +65,7 @@ import { SearchPipe } from './common/search.pipe';
     BrowserAnimationsModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule.forRoot(),
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
         AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
