@@ -17,8 +17,8 @@ import { DataTableResource } from 'angular5-data-table';
   ]
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  products: Product[];
-  filteredProducts: any[];
+  products: Product[]= [];
+  filteredProducts: Product[] = [];
   subscription: Subscription;
   tableResource: DataTableResource<Product>;
   items: Product[] = [];

@@ -1,36 +1,47 @@
 <div class="row">
     <div class="col-3">
-        <ul class="list-group">
-            <li class="list-group-item active" aria-current="true">All</li>
-            <li 
+        <div class="list-group">
+            <a 
+                routerLink="/"
+                class="list-group-item list-group-item-action" 
+                >
+                All Categories
+            </a>
+            <a 
                 *ngFor="let c of categories$ | async"
-                class="list-group-item">
-                {{ c.payload.val().name }}
-            </li>
-        </ul>
+                routerLink="/"
+                [queryParams]="{ category: c.key }"
+                class="list-group-item list-group-item-action"
+                [class.active]="category === c.key"
+                >{{ c.payload.val().name }}
+            </a>
+        </div>
     </div>
     <div class="col">
         <div class="container">
             <div class="row row-cols-2">
-                <ng-container *ngFor="let p of products$ | async; let i = index">
-              <div class="col">
-                  
-                    <div 
-                        class="card" 
-                        style="width: 15rem;">
-                        <img [src]="p.imageUrl" class="card-img-top">
-                        <div class="card-body">
-                        <h4 class="card-title">{{ p.title }}</h4>
-                        <p class="card-text">{{ p.price | currency:'USD': true }}</p>
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
                 
-                </div>
+                <ng-container *ngFor="let p of filteredProducts; let i = index">
+
+                        <div class="col">
+                        
+                            <div 
+                                class="card" 
+                                style="width: 15rem;">
+                                <img [src]="p.imageUrl" class="card-img-top">
+                                <div class="card-body">
+                                <h4 class="card-title">{{ p.title }}</h4>
+                                <p class="card-text">{{ p.price | currency:'USD': true }}</p>
+                                <a href="#" class="btn btn-primary">Add to Cart</a>
+                                </div>
+                            </div>
+                
+                         </div>               
+            
                 <div *ngIf="(i + 1) % 2 === 0" class="w-100"><br></div>
             </ng-container>
-            </div>
-          </div>
+    </div>
+    </div>
     </div>
 </div>
 
