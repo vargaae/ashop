@@ -1,3 +1,4 @@
+import { switchMap } from 'rxjs/operators';
 import { ProductService } from './../services/product.service';
 import { Component } from '@angular/core';
 import { CategoryService } from '../services/category.service';
@@ -25,19 +26,20 @@ export class ProductsComponent{
     productService: ProductService,
     categoryService: CategoryService
     ) { 
-    productService.getAll()
-      .subscribe(products => { 
+    productService
+    .getAll()
+      .pipe(switchMap(products => { 
       this.products = products;
-
-    route.queryParamMap.subscribe(params => {
+      return route.queryParamMap;
+    }))
+    .subscribe(params => {
       this.category = params.get('category');
 
       this.filteredProducts = (this.category) ?
       this.products.filter(p => p.category === this.category) :
       this.products;
-    });
-
-  })
+  
+  });
 
     this.categories$ = categoryService.getAll();
   }
