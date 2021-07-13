@@ -103,13 +103,7 @@
     </div>
 
     <div class="col-md-6">
-        <div *ngIf="product.title" class="card" style="width: 20rem;">
-            <img [src]="product.imageUrl" *ngIf="imageUrl.valid" class="card-img-top">
-            <div class="card-body">
-              <h3 class="card-title">{{ product.title }}</h3>
-              <p class="card-text">{{ product.price | currency:'USD':true }}</p>
-            </div>
-          </div>
+        <product-card [product]="product" [show-actions]="false"></product-card>
     </div>
 
 </div>
