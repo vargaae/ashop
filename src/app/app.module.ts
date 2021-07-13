@@ -43,6 +43,7 @@ import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { DataTableModule } from 'angular5-data-table';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DataTableModule } from 'angular5-data-table';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,
