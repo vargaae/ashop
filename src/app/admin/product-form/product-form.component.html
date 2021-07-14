@@ -4,90 +4,89 @@
         <form #f="ngForm" (ngSubmit)="save(f.value)">
             <div @slide class="mb-3">
                 <label @fade for="title" class="form-label">Title</label>
-                <input 
-                    [(ngModel)]="product.title" 
-                    name="title" 
-                    #title="ngModel" 
-                    required 
-                    minlength="3" 
-                    id="title" 
-                    type="text" 
+                <input
+                    [(ngModel)]="product.title"
+                    name="title"
+                    #title="ngModel"
+                    required
+                    minlength="3"
+                    id="title"
+                    type="text"
                     class="form-control">
-                
-                <div 
-                class="alert alert-danger" 
+
+                <div
+                class="alert alert-danger"
                 *ngIf="title.touched && !title.valid">
                     <div *ngIf="title.errors?.required">Title is required.</div>
                     <div *ngIf="title.errors?.minlength">Title should be minimum {{ title.errors?.minlength.requiredLength }} characters.</div>
-            
-             </div>  
-             
+
+             </div>
+
             </div>
             <div @slide class="mb-3">
                 <label @fade for="price" class="form-label">Price</label>
                 <div class="input-group mb-3">
-                    <span class="input-group-text">$</span>
-                    <input 
-                        [(ngModel)]="product.price" 
+                    <span class="input-group-text">€</span>
+                    <input
+                        [(ngModel)]="product.price"
                         name="price"
-                        #price="ngModel" 
+                        #price="ngModel"
                         required
                         [min]="0"
-                        id="price" 
-                        type="number" 
-                        class="form-control" 
+                        id="price"
+                        type="number"
+                        class="form-control"
                         aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text">.00</span>
                 </div>
-        
-                    <div 
-                        class="alert alert-danger" 
+
+                    <div
+                        class="alert alert-danger"
                         *ngIf="price.touched && !price.valid">
                              <div *ngIf="price.errors?.required">Price is required.</div>
                              <div *ngIf="price.errors?.min">Price should be 0 or higher.</div>
                     </div>
-        
+
             </div>
             <div @slide class="mb-3">
                 <label @fade for="category" class="form-label">Category</label>
-                <select 
-                     [(ngModel)]="product.category" 
-                    name="category" 
+                <select
+                     [(ngModel)]="product.category"
+                    name="category"
                     #category="ngModel"
                     required
-                    id="category" 
+                    id="category"
                     class="form-select">
                     <option selected value=""></option>
-                    <option 
-                        *ngFor="let c of categories$ | async" 
+                    <option
+                        *ngFor="let c of categories$ | async"
                         [value]="c.key">
                         {{ c.payload.val().name }}
                     </option>
-        
+
                   </select>
-                    <div 
-                        class="alert alert-danger" 
+                    <div
+                        class="alert alert-danger"
                         *ngIf="category.touched && !category.valid">
                         Category is required.
                     </div>
-                    
+
             </div>
-        
+
             <div @slide class="mb-3">
                 <label @fade for="imageUrl" class="form-label">Image URL</label>
-                <input 
-                    [(ngModel)]="product.imageUrl" 
-                    name="imageUrl" 
+                <input
+                    [(ngModel)]="product.imageUrl"
+                    name="imageUrl"
                     #imageUrl="ngModel"
                     required
                     url
-                    id="imageUrl" 
-                    type="text" 
+                    id="imageUrl"
+                    type="text"
                     class="form-control">
-                    <div 
-                        class="alert alert-danger" 
+                    <div
+                        class="alert alert-danger"
                         *ngIf="imageUrl.touched && imageUrl.invalid">
-                        
+
                              <div *ngIf="imageUrl.errors?.required">Image URL is required.</div>
                              <div *ngIf="imageUrl.errors?.url">Please enter a valid URL.</div>
                     </div>
@@ -96,20 +95,20 @@
             <!-- TODO: TimeStamp
             <div @slide class="mb-3">
                 <label @fade for="date" class="form-label">Date</label>
-                <input 
-                    [(ngModel)]="product.date" 
-                    name="date" 
-                    #title="ngModel" 
-                    id="title" 
-                    type="text" 
-                    class="form-control"> 
-             
+                <input
+                    [(ngModel)]="product.date"
+                    name="date"
+                    #title="ngModel"
+                    id="title"
+                    type="text"
+                    class="form-control">
+
             </div> -->
-        
+
             <!-- <br> FOR DEVELOPING TO SEE THE VALUES:
             <p>{{ f.value | json }}</p>
             <br> -->
-        
+
             <button @fade class="btn btn-primary mb-3" [disabled]="!f.valid">Save</button>
             <button type="button" @fade (click)="delete()" class="btn btn-danger mb-3" >Delete</button>
         </form>
