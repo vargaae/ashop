@@ -26,7 +26,7 @@ export class ProductsComponent{
     ) { 
     productService
     .getAll()
-      .pipe(switchMap(products => { 
+      .pipe(switchMap((products: Product[]) => { 
       this.products = products;
       return route.queryParamMap;
     }))

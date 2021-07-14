@@ -42,6 +42,7 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
 import { DataTableModule } from 'angular5-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
@@ -88,7 +89,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

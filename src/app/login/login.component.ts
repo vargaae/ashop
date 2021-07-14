@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { fadeLogin } from '../animations';
+import { fade } from '../animations';
 import { AuthService } from '../services/auth.service';
 
 
@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   animations: [
-    fadeLogin
+    fade
   ]
 })
 export class LoginComponent {
