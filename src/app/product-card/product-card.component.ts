@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { Product } from '../models/product';
+import { Product } from './../models/product';
 import { ShoppingCartService } from './../services/shopping-cart.service';
+import { Component, Input } from '@angular/core';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'product-card',
@@ -10,25 +11,33 @@ import { ShoppingCartService } from './../services/shopping-cart.service';
 export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('show-actions') showActions = true;
-  @Input('cart') shoppingCart;
+  @Input('shopping-cart') shoppingCart: ShoppingCart;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   addToCart() {
-    this.cartService.addToCart(this.product);
+    this.shoppingCartService.addToCart(this.product);
   }
 
   removeFromCart() {
-    this.cartService.removeFromCart(this.product);
+    this.shoppingCartService.removeFromCart(this.product);
   }
 
-  getQuantity() {
-    if (!this.shoppingCart) return 0;
+  getQuantity(product: Product) {
+    if (!this.shoppingCart) return 0; 
+  
+    // while we get the shopping cart from Firebase there's going to be some delay and during that time this shopping cart is going to be null and we would get a null reference exception in the code below and we don't want that to happen; so at first it would show 0 for the the number of itemsMap in shopping cart and if there are some itemsMap in it the 0 will update to quantity amount
 
     let item = this.shoppingCart.items[this.product.key];
-        console.log(this.shoppingCart.items);
     return item ? item.quantity : 0;
-  // console.log(this.product.key);
-    // console.log(this.shoppingCart);
   }
+
+  // getQuantity(product: Product) {
+  //   if (!this.shoppingCart) return 0;
+
+  //   let item = this.shoppingCart.items[this.product.key];
+
+  //   return item ? item.quantity : 0;
+
+  // }
 }

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { fade, slide } from '../animations';
 import { AuthService } from '../services/auth.service';
 import { AppUser } from './../models/app-user';
-import { ShoppingCartItem } from '../models/shopping-cart-item';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Observable } from 'rxjs';
 
