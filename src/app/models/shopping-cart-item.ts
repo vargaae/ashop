@@ -1,12 +1,7 @@
-import { ShoppingCart } from './shopping-cart';
+import { Product } from './product';
 
-export interface ShoppingCartItem {
-  key?: string;
-  quantity?: number;
-  id?: string;
-  name?: string;
-  title?: string;
-  price?: number;
-  category?: string;
-  imageUrl?: string;
-}
+
+  export interface ShoppingCartItem {
+    product: Product;
+    quantity?: number;
+  }

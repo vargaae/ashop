@@ -7,6 +7,7 @@ import { ProductService } from './product.service';
 import { Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,9 +29,10 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId).snapshotChanges()
+    return this.db.object('/shopping-carts/' + cartId).valueChanges()
+    .pipe(map((x: any) => new ShoppingCart(x.items)));
   }
 
   private getItem(cartId: string, productId: string) {
@@ -74,7 +76,7 @@ export class ShoppingCartService {
           console.log(item.key)
           console.log(item.payload.val())
           console.log(item.payload.val().quantity)
-      } 
+      }
   });
 }
 

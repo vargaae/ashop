@@ -23,12 +23,12 @@ export class ProductCardComponent {
   }
 
   getQuantity() {
-    // console.log(this.product.key);
-    // console.log(this.shoppingCart);
     if (!this.shoppingCart) return 0;
 
     let item = this.shoppingCart.items[this.product.key];
-        console.log(this.shoppingCart);
+        console.log(this.shoppingCart.items);
     return item ? item.quantity : 0;
+  // console.log(this.product.key);
+    // console.log(this.shoppingCart);
   }
 }

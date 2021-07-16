@@ -8,6 +8,7 @@ import { Product } from '../models/product';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'products',
   templateUrl: './products.component.html',
@@ -21,7 +22,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   category: string;
-  cart: ShoppingCartItem;
+  cart;
   subscription: Subscription;
 
   constructor(
@@ -31,7 +32,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ) {
     productService
     .getAll()
-      .pipe(switchMap((products: Product[]) => {
+      .pipe(switchMap(products => {
       this.products = products;
       return route.queryParamMap;
     }))
@@ -49,7 +50,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
    this.subscription = (await this.cartService.getCart())
    .subscribe(cart =>
       this.cart = cart);
-
   }
 
   ngOnDestroy() {
