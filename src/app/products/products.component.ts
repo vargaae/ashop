@@ -23,7 +23,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   filteredProducts: Product[] = [];
   category: string;
   cart$: Observable<ShoppingCart>;
+  cart: any;
   subscription: Subscription;
+
 
   constructor(
     route: ActivatedRoute,
@@ -47,8 +49,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-   this.cart$ = await this.shoppingCartService.getCart();
-   
+   this.subscription = (await this.shoppingCartService.getCart())
+   .subscribe(cart => this.cart = cart);
   }
 
   ngOnDestroy() {

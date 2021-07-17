@@ -1,3 +1,4 @@
+import { ShoppingCartItem } from './../models/shopping-cart-item';
 import { Product } from './../models/product';
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { Component, Input } from '@angular/core';
@@ -23,13 +24,14 @@ export class ProductCardComponent {
     this.shoppingCartService.removeFromCart(this.product);
   }
 
-  getQuantity(product: Product) {
-    if (!this.shoppingCart) return 0; 
-  
-    // while we get the shopping cart from Firebase there's going to be some delay and during that time this shopping cart is going to be null and we would get a null reference exception in the code below and we don't want that to happen; so at first it would show 0 for the the number of itemsMap in shopping cart and if there are some itemsMap in it the 0 will update to quantity amount
+  getQuantity() {
+    if (!this.shoppingCart) { return 0; }
+    else {
+      let item = this.shoppingCart.items[this.product.key];
 
-    let item = this.shoppingCart.items[this.product.key];
     return item ? item.quantity : 0;
+    }
+
   }
 
   // getQuantity(product: Product) {

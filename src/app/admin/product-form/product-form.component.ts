@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { fade, slide } from 'src/app/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { SnapshotAction } from '@angular/fire/database';
 import { Product } from '../../models/product';
 
 @Component({
@@ -26,7 +25,7 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService
-    ) { 
+    ) {
     this.categories$ = categoryService.getAll();
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -47,7 +46,7 @@ export class ProductFormComponent implements OnInit {
 
     this.productService.delete(this.id);
     this.router.navigate(['/admin/admin-products']);
-    
+
   }
 
   ngOnInit(): void  {
