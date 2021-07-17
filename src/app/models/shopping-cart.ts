@@ -2,8 +2,8 @@ import { Product } from "./product";
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart {
-  // product: Product;
-  // quantity?: number;
+  product: Product;
+  quantity?: number;
   items: ShoppingCartItem[] = [];
   // we're going to use this field in our template to easily iterate over all the items in the shopping cart
 
@@ -12,7 +12,8 @@ export class ShoppingCart {
 
     for (let productId in itemsMap) {
       let item = this.itemsMap[productId];
-      this.items.push(new ShoppingCartItem({ ...item, key: productId}));
+      this.items.push(new ShoppingCartItem({ ...item, key: productId }));
+        // when we apply the spread operator to an object TypeScript will iterate over all the properties of this object and add them here (in ...item); so the three lines commented above are exactly the same as the ...item line
 
       // let x = new ShoppingCartItem({
         // title: item.title,

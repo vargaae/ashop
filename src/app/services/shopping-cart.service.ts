@@ -1,4 +1,3 @@
-import { ShoppingCartItem } from './../models/shopping-cart-item';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Product } from '../models/product';
@@ -49,31 +48,31 @@ export class ShoppingCartService {
     }
 
   async addToCart(product: Product) {
-    this.updateItem(product, 1, 1);
+    // this.updateItem(product, 1, 1);
 
-    //   let cartId = await this.getOrCreateCartId();
-    //   let item$ = this.getItem(cartId, product.id);
+      let cartId = await this.getOrCreateCartId();
+      let item$ = this.getItem(cartId, product.id);
 
-    //   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-    //     if (item.payload.exists()) {
-    //         item$.update({
-    //           title: product.title,
-    //           imageUrl: product.imageUrl,
-    //           price: product.price,
-    //           quantity: (item.payload.val().quantity) + 1
-    //         });
-    //         console.log(item.type);
-    //         console.log(item.key)
-    //         console.log(item.payload.val())
-    //         console.log(item.payload.val().quantity)
-    //     } else {
-    //         item$.update({
-    //           title: product.title,
-    //           imageUrl: product.imageUrl,
-    //           price: product.price,
-    //           quantity: 1 });
-    //     }
-    // });
+      item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+        if (item.payload.exists()) {
+            item$.update({
+              title: product.title,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              quantity: (item.payload.val().quantity) + 1
+            });
+            console.log(item.type);
+            console.log(item.key)
+            console.log(item.payload.val())
+            console.log(item.payload.val().quantity)
+        } else {
+            item$.update({
+              title: product.title,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              quantity: 1 });
+        }
+    });
   }
 
   async removeFromCart(product: Product) {
@@ -96,31 +95,31 @@ export class ShoppingCartService {
   });
 }
 
-async updateItem(product: Product, change: number, emptyCart: number) {
-  let cartId = await this.getOrCreateCartId();
-  let item$ = this.getItem(cartId, product.id);
+// async updateItem(product: Product, change: number, emptyCart: number) {
+//   let cartId = await this.getOrCreateCartId();
+//   let item$ = this.getItem(cartId, product.id);
 
-  item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-    if (item.payload.exists()) {
-        item$.update({
-          // product: product,
-          title: product.title,
-          imageUrl: product.imageUrl,
-          price: product.price,
-          quantity: (item.payload.val().quantity) + change
-        });
+//   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+//     if (item.payload.exists()) {
+//         item$.update({
+//           // product: product,
+//           title: product.title,
+//           imageUrl: product.imageUrl,
+//           price: product.price,
+//           quantity: (item.payload.val().quantity) + change
+//         });
 
-    } else {
-        item$.update({
-          // product: product,
-          title: product.title,
-          imageUrl: product.imageUrl,
-          price: product.price,
-          quantity: emptyCart
-        });
-    }
-});
-}
+//     } else {
+//         item$.update({
+//           // product: product,
+//           title: product.title,
+//           imageUrl: product.imageUrl,
+//           price: product.price,
+//           quantity: emptyCart
+//         });
+//     }
+// });
+// }
 
 // REFRACTORING : - || 0 ->didn't work somehow?!
 // async updateItem(product: Product, change: number) {
