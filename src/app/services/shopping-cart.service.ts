@@ -49,20 +49,31 @@ export class ShoppingCartService {
     }
 
   async addToCart(product: Product) {
-      let cartId = await this.getOrCreateCartId();
-      let item$ = this.getItem(cartId, product.id);
+    this.updateItem(product, 1, 1);
 
-      item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-        if (item.payload.exists()) {
-            item$.update({ product: product, quantity: (item.payload.val().quantity) + 1 });
-            console.log(item.type);
-            console.log(item.key)
-            console.log(item.payload.val())
-            console.log(item.payload.val().quantity)
-        } else {
-            item$.set({ product: product, quantity: 1 });
-        }
-    });
+    //   let cartId = await this.getOrCreateCartId();
+    //   let item$ = this.getItem(cartId, product.id);
+
+    //   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+    //     if (item.payload.exists()) {
+    //         item$.update({
+    //           title: product.title,
+    //           imageUrl: product.imageUrl,
+    //           price: product.price,
+    //           quantity: (item.payload.val().quantity) + 1
+    //         });
+    //         console.log(item.type);
+    //         console.log(item.key)
+    //         console.log(item.payload.val())
+    //         console.log(item.payload.val().quantity)
+    //     } else {
+    //         item$.update({
+    //           title: product.title,
+    //           imageUrl: product.imageUrl,
+    //           price: product.price,
+    //           quantity: 1 });
+    //     }
+    // });
   }
 
   async removeFromCart(product: Product) {
@@ -71,7 +82,12 @@ export class ShoppingCartService {
 
     item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
       if (item.payload.exists(), item.payload.val().quantity >= 0) {
-          item$.update({ product: product, quantity: (item.payload.val().quantity) - 1 });
+          item$.update({
+            title: product.title,
+            imageUrl: product.imageUrl,
+            price: product.price,
+            quantity: (item.payload.val().quantity) - 1
+          });
           console.log(item.type);
           console.log(item.key)
           console.log(item.payload.val())
@@ -80,21 +96,45 @@ export class ShoppingCartService {
   });
 }
 
-async updateItemQuantity(product: Product, change: number, emptyCart: number) {
+async updateItem(product: Product, change: number, emptyCart: number) {
   let cartId = await this.getOrCreateCartId();
   let item$ = this.getItem(cartId, product.id);
 
   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
     if (item.payload.exists()) {
-        item$.update({ product: product, quantity: (item.payload.val().quantity) + change });
-        console.log(item.type);
-        console.log(item.key)
-        console.log(item.payload.val())
-        console.log(item.payload.val().quantity)
+        item$.update({
+          // product: product,
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: (item.payload.val().quantity) + change
+        });
+
     } else {
-        item$.set({ product: product, quantity: emptyCart });
+        item$.update({
+          // product: product,
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: emptyCart
+        });
     }
 });
 }
+
+// REFRACTORING : - || 0 ->didn't work somehow?!
+// async updateItem(product: Product, change: number) {
+//   let cartId = await this.getOrCreateCartId();
+//   let item$ = this.getItem(cartId, product.id);
+
+//   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+//         item$.update({
+//               title: product.title,
+//               imageUrl: product.imageUrl,
+//               price: product.price,
+//               quantity: (item.payload.val().quantity || 0) + change
+//              });
+// });
+// }
 
 }
