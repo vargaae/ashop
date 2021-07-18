@@ -61,12 +61,16 @@ export class ShoppingCartService {
     let item$ = this.getItem(cartId, product.id);
 
     item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-      if (item.payload.exists(), item.payload.val().quantity >= 0) {
-          item$.update({
+      let quantity = (item.payload.val().quantity) - 1
+
+      if (item.payload.exists()) {
+        if (quantity === 0) item$.remove();
+
+        else item$.update({
             title: product.title,
             imageUrl: product.imageUrl,
             price: product.price,
-            quantity: (item.payload.val().quantity) - 1
+            quantity: quantity
           });
           // console.log(item.type);
           // console.log(item.key)
