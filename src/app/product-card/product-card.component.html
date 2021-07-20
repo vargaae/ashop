@@ -4,24 +4,12 @@
       <h2 class="card-title">{{ product.title }}</h2>
       <p class="card-text">{{ product.price | currency:'EUR': 'symbol' }} /kg</p>
 </div>
-
-<div *ngIf="showActions && !shoppingCart" class="card-footer">
-
-  <div class="row g-0">
-    <button
-        (click)="addToCart()"
-        class="btn btn-secondary"
-        >
-        Add to Cart
-    </button>
-  </div>
-</div>
-
-<div *ngIf="showActions && shoppingCart" class="card-footer">
+<div *ngIf="cart$ | async as cart">
+<div *ngIf="showActions" class="card-footer">
 
   <div class="row g-0">
     <button
-        *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
+        *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
         (click)="addToCart()"
         class="btn btn-secondary"
         >
@@ -30,9 +18,10 @@
   </div>
 
   <ng-template #updateQuantity>
-    <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
+    <product-quantity [product]="product" [shopping-cart]="cart"></product-quantity>
   </ng-template>
 
 </div>
-
 </div>
+</div>
+

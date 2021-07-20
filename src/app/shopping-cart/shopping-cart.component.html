@@ -1,6 +1,6 @@
 <h1>Shopping Cart</h1>
 <ng-container *ngIf="cart$ | async as cart">
-<div class="row col-10">
+<div @slide class="row col-10">
   <p>
     You have {{ cart.totalItemsCount }} items in your shopping cart.
   </p>
@@ -24,8 +24,12 @@
           {{ item.title }}
         </td>
         <td>
-          <product-quantity [product]="item" [shopping-cart]="cart">
-          </product-quantity>
+          <!-- {{ item.quantity }} -->
+          <ng-container *ngIf="filteredProducts">
+            <div>
+              <shopping-quantity [product]="item" [shopping-cart]="cart"></shopping-quantity>
+            </div>
+          </ng-container>
         </td>
         <td class="text-end">{{ item.totalPrice | currency:'EUR':'symbol' }}</td>
       </tr>
@@ -42,7 +46,7 @@
   </table>
 </div>
 
-  <button
+  <button @slide
     (click)="clearCart()"
     class="btn btn-danger btn-sm">
     Clear Shopping Cart

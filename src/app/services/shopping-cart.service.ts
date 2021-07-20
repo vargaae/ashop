@@ -12,7 +12,7 @@ import { ShoppingCart } from '../models/shopping-cart';
 })
 export class ShoppingCartService {
   product;
-  id;
+  id: any;
 
   constructor(private db: AngularFireDatabase,
     private productService: ProductService) {
@@ -47,7 +47,7 @@ export class ShoppingCartService {
             // console.log(item.payload.val())
             // console.log(item.payload.val().quantity)
         } else {
-            item$.update({
+            item$.set({
               title: product.title,
               imageUrl: product.imageUrl,
               price: product.price,
@@ -56,27 +56,72 @@ export class ShoppingCartService {
     });
   }
 
-  async removeFromCart(product: Product) {
-    let cartId = await this.getOrCreateCartId();
-    let item$ = this.getItem(cartId, product.id);
+//   async removeFromCart(product: Product) {
+//     let cartId = await this.getOrCreateCartId();
+//     let item$ = this.getItem(cartId, product.id);
 
-    item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-      let quantity = (item.payload.val().quantity) - 1
+//     item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+//       let quantity = (item.payload.val().quantity) - 1
 
-      if (item.payload.exists()) {
-        if (quantity === 0) item$.remove();
+//       if (item.payload.exists()) {
+//         if (quantity === 0) item$.remove();
 
-        else item$.update({
-            title: product.title,
-            imageUrl: product.imageUrl,
-            price: product.price,
-            quantity: quantity
-          });
-          // console.log(item.type);
-          // console.log(item.key)
-          // console.log(item.payload.val())
-          // console.log(item.payload.val().quantity)
-      }
+//         else item$.update({
+//             title: product.title,
+//             imageUrl: product.imageUrl,
+//             price: product.price,
+//             quantity: quantity
+//           });
+//           // console.log(item.type);
+//           // console.log(item.key)
+//           // console.log(item.payload.val())
+//           // console.log(item.payload.val().quantity)
+//       }
+//   });
+// }
+
+async addToProductsCart(product: Product) {
+  this.updateShoppingItem(product, product.id, 1);
+}
+
+async removeFromProductsCart(product: Product) {
+  this.updateShoppingItem(product, product.id, -1);
+}
+
+async addToShoppingCart(product: Product) {
+  this.updateShoppingItem(product, product.key, 1);
+}
+
+async removeFromShoppingCart(product: Product) {
+  this.updateShoppingItem(product, product.key, -1);
+}
+
+private async updateShoppingItem(product: Product, changeKey: string, change: number) {
+  let cartId = await this.getOrCreateCartId();
+  let item$ = this.getItem(cartId, changeKey);
+
+  item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+    let quantity = (item.payload.val().quantity) + change;
+
+    if (item.payload.exists()) {
+      if (quantity === 0) { item$.remove(); }
+      // we want to remove the item with quantity 0 from the shopping cart; else we want to update it
+      else {
+        item$.update({
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          quantity: quantity
+      });
+    }
+  } else {
+      item$.set({
+        title: product.title,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        quantity: change
+      });
+    }
   });
 }
 
@@ -91,8 +136,6 @@ export class ShoppingCartService {
     });
   }
 
-
-
   private getItem(cartId: string, productId: string) {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
 }
@@ -105,32 +148,6 @@ export class ShoppingCartService {
       localStorage.setItem('cartId', result.key);
       return result.key;
     }
-
-// private async updateItem(product: Product, change: number, emptyCart: number) {
-//   let cartId = await this.getOrCreateCartId();
-//   let item$ = this.getItem(cartId, product.id);
-
-//   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-//     if (item.payload.exists()) {
-//         item$.update({
-//           // product: product,
-//           title: product.title,
-//           imageUrl: product.imageUrl,
-//           price: product.price,
-//           quantity: (item.payload.val().quantity) + change
-//         });
-
-//     } else {
-//         item$.update({
-//           // product: product,
-//           title: product.title,
-//           imageUrl: product.imageUrl,
-//           price: product.price,
-//           quantity: emptyCart
-//         });
-//     }
-// });
-// }
 
 // REFRACTORING : - || 0 ->didn't work somehow?!
 // async updateItem(product: Product, change: number) {

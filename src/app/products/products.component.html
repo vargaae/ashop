@@ -1,16 +1,18 @@
 <div class="row">
 
-  <div class="col-3">
+  <div @slide class="col-3">
       <product-filter [category]="category"></product-filter>
+          <!-- we're binding this category input property of our product-filter.component to the category field in our products.component class -->
   </div>
 
   <div class="col">
   <div class="container">
   <div class="row row-cols-2" *ngIf="cart$ | async as cart">
 
-    <ng-container *ngFor="let p of filteredProducts; let i = index">
-            <div class="col">
-                <product-card [product]="p" [shoppingCart]="cart"></product-card>
+    <ng-container *ngFor="let product of filteredProducts">
+            <div @fade class="col">
+                <product-card [product]="product" [shopping-cart]="cart"></product-card>
+                          <!-- we're binding this product input property of our product-card.component to the product variable we defined in the ngFor -->
             </div>
     </ng-container>
   </div>
