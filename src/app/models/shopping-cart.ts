@@ -2,7 +2,7 @@ import { Product } from "./product";
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart {
-  product: Product;
+  // product: Product;
   // quantity?: number;
   items: ShoppingCartItem[] = [];
   // we're going to use this field in our template to easily iterate over all the items in the shopping cart
