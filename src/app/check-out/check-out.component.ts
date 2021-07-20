@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './check-out.component.html',
   styleUrls: ['./check-out.component.css']
 })
-export class CheckOutComponent implements OnInit {
+export class CheckOutReadyComponent implements OnInit {
   // cart: ShoppingCart;
   // cartSubscription: Subscription;
   // ONE WAY TO DO THIS IS WITH SUBSCRIPTION; THE OTHER IS WITH PASSING AN OBSERVABLE TO OUR TEMPLATE AND UNWRAP IT THERE WITH THE ASYNC PIPE

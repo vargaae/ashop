@@ -21,7 +21,7 @@ import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckOutComponent } from './check-out/check-out.component';
+import { CheckOutReadyComponent } from './check-out/check-out.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
@@ -50,6 +50,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { ShoppingQuantityComponent } from './shopping-cart/shopping-quantity/shopping-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     HomeComponent,
     ShoppingCartComponent,
     CheckOutComponent,
+    CheckOutReadyComponent,
     OrderSuccessComponent,
     LoginComponent,
     MyOrdersComponent,
@@ -83,7 +86,7 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
         AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
         AngularFireStorageModule,                               // imports firebase/storage only needed for storage features
-        AngularFireDatabaseModule, 
+        AngularFireDatabaseModule,
     NgbModule,
     MatCardModule,
     MatFormFieldModule,
@@ -98,7 +101,8 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     UserService,
     CategoryService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

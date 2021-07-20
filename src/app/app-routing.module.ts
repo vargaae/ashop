@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CheckOutComponent } from './check-out/check-out.component';
+import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
@@ -23,25 +23,25 @@ const routes: Routes = [
       { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
 
-      { 
-        path: 'admin/products/new', 
-        component: ProductFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+      {
+        path: 'admin/products/new',
+        component: ProductFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
       },
-      { 
-        path: 'admin/products/:id', 
-        component: ProductFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+      {
+        path: 'admin/products/:id',
+        component: ProductFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
       },
-      { 
-        path: 'admin/admin-products', 
-        component: AdminProductsComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+      {
+        path: 'admin/admin-products',
+        component: AdminProductsComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
       },
-      { 
-        path: 'admin/admin-orders', 
-        component: AdminOrdersComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+      {
+        path: 'admin/admin-orders',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
       },
 
       { path: '**', component: HomeComponent }
