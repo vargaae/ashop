@@ -48,6 +48,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingQuantityComponent } from './shopping-cart/shopping-quantity/shopping-quantity.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { ShoppingQuantityComponent } from './shopping-cart/shopping-quantity/sho
     ProductFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    ShoppingQuantityComponent
+    ShoppingQuantityComponent,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
