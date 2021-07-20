@@ -3,7 +3,15 @@
 
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" id="name" ngModel name="name" #name="ngModel" class="form-control dede" required>
+    <input
+      type="text"
+      id="name"
+      ngModel="shipping.name"
+      name="name"
+      #name="ngModel"
+      class="form-control dede"
+      required
+      >
     <div class="alert alert-danger" *ngIf="name.dirty && name.invalid">
       <div *ngIf="name.errors?.required">Name is required</div>
     </div>
