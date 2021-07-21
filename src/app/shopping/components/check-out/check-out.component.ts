@@ -58,16 +58,16 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   // shipping: any;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private shoppingCartService: ShoppingCartService,
-    private orderService: OrderService,
-    private router: Router
+    private orderService: OrderService
     ) {}
 
   async ngOnInit() {
     let cart$ = await this.shoppingCartService.getCart();
     this.cartSubscription = cart$.subscribe(cart => this.cart = cart);
-    this.authService.user$.subscribe(user => this.userId = user.uid);
+    this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
   }
 
   ngOnDestroy() {
@@ -75,7 +75,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  placeOrder(shipping: any) {
+  async placeOrder(shipping: Shipping) {
     let order = new Order(this.userId, this.shipping, this.cart);
     // moved to Order class:
     // this is the code before the refactoring below, a much cleaner way
@@ -98,32 +98,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     // we want to get the items from the shopping cart and map them to a new structure
 
     // };
-    this.orderService.storeOrder(order);
+    let result = await this.orderService.storeOrder(order);
+    this.router.navigate(['/order-success', result.key]);
+// result.key is the route parameter; we should note that this is key and not $key, $key is used when we read a node from Firebase but key is used when we store something in Firebase so Firebase returns this newly generated id in this key property
+
 
     // console.log(this.shipping);
   }
-
-  // async placeOrder(shipping: any) {
-  //   let order = new Order(this.userId, shipping, this.cart);
-  //   // this is a refactoring of the code below, a much cleaner way
-
-  //   // let order = {
-  //   //   userId: this.userId,
-  //   //   datePlaced: new Date().getTime(),
-  //   //   shipping: this.shipping,
-  //   //   items: this.cart.items.map(i => {
-  //   //     return {
-  //   //       product: {
-  //   //         title: i.title,
-  //   //         imageUrl: i.imageUrl,
-  //   //         price: i.price
-  //   //       },
-  //   //       quantity: i.quantity,
-  //   //       totalPrice: i.totalPrice
-  //   //     };
-  //   //   })
-  //   //   // we want to get the items from the shopping cart and map them to a new structure
-  //   // };
 
   //   // this.orderService.placeOrder(order).then(result => {
   //   //   this.router.navigate(['/order-success', result.key]);
@@ -132,11 +113,4 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   //   // now that we have an order object we can call the orderService and pass this order to the placeOrder() method
   //   let result = await this.orderService.placeOrder(order);
-
-  //   this.router.navigate(['/order-success', result.key]);
-  //   // result.key is the route parameter; we should note that this is key and not $key, $key is used when we read a node from Firebase but key is used when we store something in Firebase so Firebase returns this newly generated id in this key property
-
-
-  // }
-
 }

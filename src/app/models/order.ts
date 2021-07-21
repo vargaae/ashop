@@ -1,3 +1,4 @@
+import { Shipping } from './shipping';
 import { ShoppingCart } from "./shopping-cart";
 
 export class Order {
@@ -5,7 +6,7 @@ export class Order {
   items: any[];
   // $key: string;
 
-  constructor(public userId: string, public shipping: any, shoppingCart: ShoppingCart) {
+  constructor(public userId: string, public shipping: Shipping, shoppingCart: ShoppingCart) {
     this.datePlaced = new Date().getTime();
 
     this.items = shoppingCart.items.map(i => {
