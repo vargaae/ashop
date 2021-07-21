@@ -98,7 +98,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     // we want to get the items from the shopping cart and map them to a new structure
 
     // };
-    let result = await this.orderService.storeOrder(order);
+    let result = await this.orderService.placeOrder(order);
     this.router.navigate(['/order-success', result.key]);
 // result.key is the route parameter; we should note that this is key and not $key, $key is used when we read a node from Firebase but key is used when we store something in Firebase so Firebase returns this newly generated id in this key property
 
