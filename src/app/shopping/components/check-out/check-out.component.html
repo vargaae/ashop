@@ -1,5 +1,8 @@
+<div @todoAnimation>
+<h2 class="fw-bold">Shipping</h2>
+</div>
+
 <div @todoAnimation class="row">
-  <h2>Shipping</h2>
     <div class="col-md-6">
         <form #f="ngForm" (ngSubmit)="placeOrder(f.value)" class="form-floating">
 
@@ -102,4 +105,7 @@
         </form>
     </div>
 
+    <div class="col-md-6">
+      <shopping-cart-summary [cart]="cart"></shopping-cart-summary>
+    </div>
 </div>
