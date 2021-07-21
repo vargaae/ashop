@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Order } from '../models/order-ready';
+import { Order } from '../models/order';
 import { OrderService } from './../services/order.service';
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';

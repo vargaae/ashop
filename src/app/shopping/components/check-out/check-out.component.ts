@@ -1,21 +1,57 @@
+import { Shipping } from './../../../models/shipping';
 import { AuthService } from './../../../services/auth.service';
 import { OrderService } from './../../../services/order.service';
 import { Subscription } from 'rxjs';
 import { ShoppingCart } from './../../../models/shopping-cart';
 import { ShoppingCartService } from './../../../services/shopping-cart.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Order } from 'src/app/models/order';
+import { Order } from '../../../models/order';
 import { Router } from '@angular/router';
+import { trigger, transition, state, animate, animation, style, keyframes, useAnimation, query } from '@angular/animations';
+import { fade, slide, bounceOutLeftAnimation, fadeInAnimation } from '../../../animations';
 
 @Component({
   selector: 'check-out',
   templateUrl: './check-out.component.html',
-  styleUrls: ['./check-out.component.css']
+  styleUrls: ['./check-out.component.css'],
+  animations: [
+    trigger('todoAnimation', [
+      transition(':enter', [
+        query('label', [
+          style({ transform: 'translateY(-20px)' }),
+          animate(1000)
+        ])
+      ]),
+
+      transition(':enter', [
+        query('form-control dede', [
+          style({ transform: 'translateY(-20px)' }),
+          animate(1000)
+        ])
+      ]),
+
+      transition(':enter', [
+        useAnimation(fadeInAnimation, {
+          params: {
+            duration: '1500ms'
+          }
+        })
+
+        // style({ opacity: 0 }),
+        // animate(2000)
+      ]),
+      transition(':leave', [
+        style({backgroundColor: 'purple'}),
+        animate(1000),
+        useAnimation(bounceOutLeftAnimation)
+      ])
+     ])
+  ]
 })
+
 export class CheckOutComponent implements OnInit, OnDestroy {
   userId: string;
-  shipping = {};
-  name?: any;
+  shipping: Shipping={} as Shipping;
   cart: ShoppingCart;
   cartSubscription: Subscription;
   userSubscription: Subscription;
@@ -39,24 +75,29 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  placeOrder() {
-    let order = {
-      userId: this.userId,
-      datePlaced: new Date().getTime(),
-      shipping: this.shipping,
-      items: this.cart.items.map(i => {
-        return {
-          product: {
-            title: i.title,
-            imageUrl: i.imageUrl,
-            price: i.price
-          },
-          quantity: i.quantity,
-          totalPrice: i.totalPrice
-        }
-      })
-    };
+  placeOrder(shipping: any) {
+    let order = new Order(this.userId, this.shipping, this.cart);
+    // moved to Order class:
+    // this is the code before the refactoring below, a much cleaner way
 
+    // let order = {
+    //   userId: this.userId,
+    //   datePlaced: new Date().getTime(),
+    //   shipping: this.shipping,
+    //   items: this.cart.items.map(i => {
+    //     return {
+    //       product: {
+    //         title: i.title,
+    //         imageUrl: i.imageUrl,
+    //         price: i.price
+    //       },
+    //       quantity: i.quantity,
+    //       totalPrice: i.totalPrice
+    //     }
+    //   })
+    // we want to get the items from the shopping cart and map them to a new structure
+
+    // };
     this.orderService.storeOrder(order);
 
     // console.log(this.shipping);
