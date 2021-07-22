@@ -1,1 +1,99 @@
-<p>shipping-form works!</p>
+<form #f="ngForm" (ngSubmit)="placeOrder(f.value)" class="form-floating">
+
+  <div class="form-floating mb-3">
+    <!-- <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+    <label for="floatingInput">Email address</label> -->
+    <input
+        [(ngModel)]="shipping.name"
+        name="name"
+        #name="ngModel"
+        required
+        minlength="3"
+        id="name"
+        type="text"
+        class="form-control"
+        placeholder="Your Name"
+        >
+        <label class="form-label" for="name" class="form-label">Name</label>
+    <div
+    class="alert alert-danger"
+    *ngIf="name.touched && !name.valid">
+        <div *ngIf="name.errors?.required">Name is required.</div>
+        <div *ngIf="name.errors?.minlength">Name should be minimum {{ name.errors?.minlength.requiredLength }} characters.</div>
+
+ </div>
+
+</div>
+
+<div class="mb-3">
+  <label class="form-label" for="addressLine1" class="form-label">Address</label>
+  <input
+      [(ngModel)]="shipping.addressLine1"
+      name="addressLine1"
+      #addressLine1="ngModel"
+      required
+      minlength="3"
+      id="addressLine1"
+      type="text"
+      class="form-control">
+
+  <div
+  class="alert alert-danger"
+  *ngIf="addressLine1.touched && !addressLine1.valid">
+      <div *ngIf="addressLine1.errors?.required">Address Line 1 is required.</div>
+      <div *ngIf="addressLine1.errors?.minlength">Address Line 1 should be minimum {{ addressLine1.errors?.minlength.requiredLength }} characters.</div>
+
+</div>
+
+</div>
+
+<div class="mb-3">
+<label class="form-label" for="addressLine2" class="form-label"></label>
+<input
+    [(ngModel)]="shipping.addressLine2"
+    name="addressLine2"
+    #addressLine2="ngModel"
+    required
+    minlength="3"
+    id="addressLine2"
+    type="text"
+    class="form-control">
+
+<div
+class="alert alert-danger"
+*ngIf="addressLine2.touched && !addressLine2.valid">
+    <div *ngIf="addressLine2.errors?.required">Address Line 2 is required.</div>
+    <div *ngIf="addressLine2.errors?.minlength">Address Line 2 should be minimum {{ addressLine2.errors?.minlength.requiredLength }} characters.</div>
+
+</div>
+
+</div>
+
+<div class="form-floating mb-3">
+<input
+    [(ngModel)]="shipping.city"
+    name="city"
+    #city="ngModel"
+    required
+    minlength="3"
+    id="city"
+    type="text"
+    class="form-control"
+    placeholder="Your City"
+    >
+    <label class="form-label" for="city" class="form-label">City</label>
+<label
+    for="city"
+    class="form-control is-invalid"
+    *ngIf="city.touched && !city.valid">
+    <label *ngIf="city.errors?.required">City is required.</label>
+</label>
+
+</div>
+
+<!-- <br> FOR DEVELOPING TO SEE THE VALUES:
+  <p>{{ f.value | json }}</p>
+  <br> -->
+
+  <button class="btn btn-primary mb-3" [disabled]="!f.valid">Place Order</button>
+</form>

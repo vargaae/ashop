@@ -49,7 +49,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingQuantityComponent } from './shopping-cart/shopping-quantity/shopping-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping/components/shopping-cart-summary/shopping-cart-summary.component';
-import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ShippingFormComponent } from './shopping/components/shipping-form/shipping-form.component';
 import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
 import { OrderService } from './services/order.service';
 
