@@ -4,13 +4,13 @@
 
 <!-- ONE WAY TO DO THIS IS WITH SUBSCRIPTION; THE OTHER IS WITH PASSING AN OBSERVABLE TO OUR TEMPLATE AND UNWRAP IT THERE WITH THE ASYNC PIPE -->
 <!-- <div @todoAnimation class="row"> -->
-  <div *ngIf="cart$ | async as cart" class="row">
+  <div @todoAnimation *ngIf="cart$ | async as cart" class="row">
     <div class="col-md-6">
         <shipping-form [cart]="cart"></shipping-form>
             <!-- [cart] is the Input we declared in the ShippingFormComponent, and "cart" is a filed we have in our CheckOutComponent; this way we get all the data we need so we can pass it to our ShippingFormComponent -->
     </div>
 
-    <div class="col-md-6">
+    <div @todoAnimation class="col-md-6">
       <shopping-cart-summary [cart]="cart"></shopping-cart-summary>
           <!-- [cart] is the Input we declared in the ShoppingCartSummaryComponent, and "cart" is a filed we have in our CheckOutComponent; this way we get all the data we need so we can render it in our ShoppingCartSummary card -->
     </div>

@@ -1,7 +1,7 @@
 import { ShoppingCart } from './../../../models/shopping-cart';
 import { ShoppingCartService } from './../../../services/shopping-cart.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { trigger, transition, state, animate, animation, style, keyframes, useAnimation, query } from '@angular/animations';
+import { trigger, transition, state, animate, animation, style, keyframes, useAnimation, query, animateChild, group, stagger } from '@angular/animations';
 import { fade, slide, bounceOutLeftAnimation, fadeInAnimation } from '../../../animations';
 import { Observable, Subscription } from 'rxjs';
 
@@ -10,30 +10,26 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './check-out.component.html',
   styleUrls: ['./check-out.component.css'],
   animations: [
+    trigger('todosAnimation', [
+      transition(':enter', [
+        group([
+          query('h2', [
+            style({ transform: 'translateY(-20px)' }),
+            animate(1000)
+          ]),
+          query('@todoAnimation',
+            stagger(200, animateChild()))
+        ])
+      ])
+    ]),
+
     trigger('todoAnimation', [
-      transition(':enter', [
-        query('label', [
-          style({ transform: 'translateY(-20px)' }),
-          animate(1000)
-        ])
-      ]),
-
-      transition(':enter', [
-        query('form-control dede', [
-          style({ transform: 'translateY(-20px)' }),
-          animate(1000)
-        ])
-      ]),
-
       transition(':enter', [
         useAnimation(fadeInAnimation, {
           params: {
-            duration: '1500ms'
+            duration: '2s'
           }
         })
-
-        // style({ opacity: 0 }),
-        // animate(2000)
       ]),
       transition(':leave', [
         style({backgroundColor: 'purple'}),

@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './../services/shopping-cart.service';
 import { switchMap } from 'rxjs/operators';
 import { ProductService } from './../services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { fade, slide } from '../animations';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
@@ -19,6 +19,9 @@ import { ShoppingCart } from '../models/shopping-cart';
   ]
 })
 export class ProductsComponent implements OnInit {
+  @HostListener("window:scroll", []) onWindowScroll() {
+    this.scrollFunction();
+  }
     // products$;
   // a field which is an observable of products
   products: Product[] = [];
@@ -36,6 +39,21 @@ export class ProductsComponent implements OnInit {
     this.cart$ = await this.shoppingCartService.getCart();
     this.populateProducts();
   }
+
+  // When the user scrolls down 20px from the top of the document, show the button
+scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("myBtn").style.display = "block";
+  } else {
+      document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
   private populateProducts() {
     this.productService
