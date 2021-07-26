@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div @slide class="col-3">
+  <div @fade class="col-3">
       <product-filter [category]="category"></product-filter>
           <!-- we're binding this category input property of our product-filter.component to the category field in our products.component class -->
   </div>
@@ -13,7 +13,7 @@
             <div @fade class="col">
                 <product-card [product]="product" [shopping-cart]="cart"></product-card>
                           <!-- we're binding this product input property of our product-card.component to the product variable we defined in the ngFor -->
-                          <button (click)="topFunction()" id="myBtn" title="Go to top">Back to the Top</button>
+                          <button mat-raised-button (click)="topFunction()" id="myBtn" title="Go to top">Back to the Top</button>
             </div>
     </ng-container>
   </div>

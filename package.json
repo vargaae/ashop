@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
+    "@material/data-table": "^11.0.0",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "angular5-data-table": "^1.0.3",
     "bootstrap": "^5.0.2",

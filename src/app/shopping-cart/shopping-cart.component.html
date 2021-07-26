@@ -51,11 +51,12 @@
     </tfoot>
   </table>
 </div>
-<a @slide
+<button
+    mat-raised-button color="primary"
+    @slide
     *ngIf="cart.items.length"
-    routerLink="/check-out"
-    class="btn btn-success">
+    routerLink="/check-out">
     Check Out
-  </a>
+  </button>
 
 </ng-container>

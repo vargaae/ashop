@@ -1,80 +1,74 @@
 <div class="row">
 
     <div class="col-md-6">
-        <form #f="ngForm" (ngSubmit)="save(f.value)">
-            <div @slide class="mb-3">
-                <label class="form-label" @fade for="title" class="form-label">Title</label>
-                <input
-                    [(ngModel)]="product.title"
-                    name="title"
-                    #title="ngModel"
-                    required
-                    minlength="3"
-                    id="title"
-                    type="text"
-                    class="form-control">
+        <form #f="ngForm" (ngSubmit)="save(f.value)" class="product-form">
 
-                <div
-                class="alert alert-danger"
-                *ngIf="title.touched && !title.valid">
-                    <div *ngIf="title.errors?.required">Title is required.</div>
-                    <div *ngIf="title.errors?.minlength">Title should be minimum {{ title.errors?.minlength.requiredLength }} characters.</div>
+          <mat-form-field class="product-full-width" appearance="fill" @slide>
+            <mat-label @fade for="title">Title</mat-label>
+            <input
+                matInput
+                [(ngModel)]="product.title"
+                name="title"
+                #title="ngModel"
+                required
+                minlength="3"
+                id="title"
+                type="text"
+              >
+            <mat-error
+               *ngIf="title.touched && !title.valid">
+                <mat-error *ngIf="title.errors?.required">Title is required.</mat-error>
+                <mat-error *ngIf="title.errors?.minlength">Title should be minimum {{ title.errors?.minlength.requiredLength }} characters.</mat-error>
+         </mat-error>
+         </mat-form-field>
 
-             </div>
+            <mat-form-field class="product-full-width" appearance="fill" @slide>
+            <mat-label @fade for="price">Price (/kg)</mat-label>
 
-            </div>
-            <div @slide class="mb-3">
-                <label @fade for="price" class="form-label">Price (/kg)</label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">€</span>
+                    <!-- <span class="input-group-text">€</span> -->
                     <input
+                    matInput
                         [(ngModel)]="product.price"
                         name="price"
                         #price="ngModel"
                         required
                         [min]="0"
                         id="price"
-                        type="number"
-                        class="form-control"
-                        aria-label="Amount (to the nearest dollar)">
-                </div>
+                        type="number">
 
-                    <div
-                        class="alert alert-danger"
+                <mat-error
                         *ngIf="price.touched && !price.valid">
-                             <div *ngIf="price.errors?.required">Price is required.</div>
-                             <div *ngIf="price.errors?.min">Price should be 0 or higher.</div>
-                    </div>
+                             <mat-error *ngIf="price.errors?.required">Price is required.</mat-error>
+                             <mat-error *ngIf="price.errors?.min">Price should be 0 or higher.</mat-error>
+                    </mat-error>
 
-            </div>
-            <div @slide class="mb-3">
-                <label @fade for="category" class="form-label">Category</label>
-                <select
+                  </mat-form-field>
+            <mat-form-field class="product-full-width" appearance="fill" @slide>
+            <mat-label @fade for="category">Category</mat-label>
+                <mat-select
                      [(ngModel)]="product.category"
                     name="category"
                     #category="ngModel"
                     required
-                    id="category"
-                    class="form-select">
-                    <option selected value=""></option>
-                    <option
+                    id="category">
+                    <mat-option
                         *ngFor="let c of categories$ | async"
                         [value]="c.key">
                         {{ c.payload.val().name }}
-                    </option>
+                    </mat-option>
 
-                  </select>
-                    <div
-                        class="alert alert-danger"
+                  </mat-select>
+                    <mat-error
                         *ngIf="category.touched && !category.valid">
                         Category is required.
-                    </div>
+                    </mat-error>
 
-            </div>
+                  </mat-form-field>
 
-            <div @slide class="mb-3">
-                <label @fade for="imageUrl" class="form-label">Image URL</label>
+            <mat-form-field class="product-full-width" appearance="fill" @slide>
+            <mat-label @fade for="imageUrl">Image URL</mat-label>
                 <input
+                    matInput
                     [(ngModel)]="product.imageUrl"
                     name="imageUrl"
                     #imageUrl="ngModel"
@@ -82,26 +76,26 @@
                     url
                     id="imageUrl"
                     type="text"
-                    class="form-control">
-                    <div
-                        class="alert alert-danger"
+                    >
+                    <mat-error
                         *ngIf="imageUrl.touched && imageUrl.invalid">
 
-                             <div *ngIf="imageUrl.errors?.required">Image URL is required.</div>
-                             <div *ngIf="imageUrl.errors?.url">Please enter a valid URL.</div>
-                    </div>
-            </div>
+                             <mat-error *ngIf="imageUrl.errors?.required">Image URL is required.</mat-error>
+                             <mat-error *ngIf="imageUrl.errors?.url">Please enter a valid URL.</mat-error>
+                    </mat-error>
+                  </mat-form-field>
 
             <!-- TODO: TimeStamp
-            <div @slide class="mb-3">
-                <label @fade for="date" class="form-label">Date</label>
+            <mat-form-field class="product-full-width" appearance="fill" @slide>
+            <mat-label @fade for="date">Date</mat-label>
                 <input
+                    matInput
                     [(ngModel)]="product.date"
                     name="date"
                     #title="ngModel"
                     id="title"
                     type="text"
-                    class="form-control">
+                    >
 
             </div> -->
 
@@ -109,8 +103,8 @@
             <p>{{ f.value | json }}</p>
             <br> -->
 
-            <button @fade class="btn btn-primary mb-3" [disabled]="!f.valid">Save</button>
-            <button type="button" @fade (click)="delete()" class="btn btn-danger mb-3" >Delete</button>
+            <button mat-raised-button color="primary" @fade [disabled]="!f.valid">Save</button>
+            <button mat-raised-button color="warn" type="button" @fade (click)="delete()" >Delete</button>
         </form>
     </div>
 

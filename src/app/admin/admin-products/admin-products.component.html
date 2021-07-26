@@ -1,15 +1,23 @@
-<div @fade class="mb-3"><p>TO MANAGE PRODUCTS FOR ADMINS:</p>
+<div @fade><p>TO MANAGE PRODUCTS FOR ADMINS:</p>
 
 <p>
-<a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+  <button mat-raised-button color="primary" routerLink="/admin/products/new">New Product</button>
 </p>
-
-<input
+<form class="search-form">
+<mat-form-field class="search-full-width" appearance="fill">
+  <mat-label>Search...</mat-label>
+  <input
     #query
     (keyup)="filter(query.value)"
-    type="text"
-    class="form-control"
-    placeholder="Search...">
+    matInput
+    type="search"
+    placeholder="Type a product's name to filter them"
+    >
+  <button *ngIf="query.value" matSuffix mat-icon-button aria-label="Search">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>
+</form>
 
 </div>
 <div @fade>

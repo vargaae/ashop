@@ -1,4 +1,28 @@
-<div class="card">
+<mat-card>
+  <mat-card-title>Order Summary</mat-card-title>
+  <br>
+  <mat-card-content fxLayout="column" fxLayoutAlign="space-around center">
+    <h3 class="card-title fw-bold">Order Summary</h3>
+    <p class="card-text">You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let item of cart.items" class="list-group-item">
+        {{ item.quantity }} x {{ item.title }}
+        <div class="float-end">
+          {{ item.totalPrice | currency:'EUR':'symbol' }}
+        </div>
+      </li>
+      <li class="list-group-item fw-bold">
+        Total
+        <div class="float-end">
+          {{ cart.totalPrice | currency:'EUR':'symbol' }}
+        </div>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>
+
+
+<!-- <div class="card">
   <div class="card-body">
     <h3 class="card-title fw-bold">Order Summary</h3>
     <p class="card-text">You have {{ cart.totalItemsCount }} items in your shopping cart.</p>
@@ -17,4 +41,4 @@
       </li>
     </ul>
   </div>
-</div>
+</div> -->

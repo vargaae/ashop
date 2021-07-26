@@ -1,3 +1,4 @@
+import { Order } from './../../models/order';
 import { OrderService } from './../../services/order.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,10 +11,18 @@ export class AdminOrdersComponent implements OnInit {
   orders$;
 
   constructor(private orderService: OrderService) {
-    this.orders$ = orderService.getOrders();
+    // this.orders$ = orderService.getOrders();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.orders$ = this.orderService.getOrders();
+  }
+
+  deleteOrder(order: Order) {
+    // this.orderService.deleteOrder(order.key)
+    //   .then(data => {
+    //     console.log(data);
+    //   });
   }
 
 }

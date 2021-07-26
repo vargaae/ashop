@@ -2,11 +2,13 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import { Order } from '../models/order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  userId: string;
 
   constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService) { }
 
@@ -27,8 +29,29 @@ export class OrderService {
     return this.db.list('/orders').valueChanges();
   }
 
+  // getOrdersByUser(userId: string) {
+  //   return this.db.list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
+  //     .snapshotChanges().pipe(map(data => {
+  //       return data.map(action => {
+  //         const $key = action.payload.key;
+  //         const data = { $key, ...action.payload.val() as Order};
+  //         return data;
+  //       });
+  //     }));
+  // }
+
   getOrdersByUser(userId: string) {
-    return this.db.list('/orders').valueChanges();
+    return this.db.list<Order>('/orders', ref => ref.orderByChild('userId').equalTo(userId))
+    .snapshotChanges()
+    .pipe(
+        map(changes =>
+            changes.map(o => {
+                const data = o.payload.val() as Order;
+                const key = o.payload.key;
+                return { key, ...data };
+            })
+        )
+    );
   }
 
   // getOrders() {
@@ -43,9 +66,9 @@ export class OrderService {
   //   // here we simply return the list of orders from Firebase
   // }
 
-  getOrderById(orderId: string) {
-    return this.db.object('/orders/' + orderId).valueChanges();
-  }
+  // getOrderById(orderId: string) {
+  //   return this.db.object('/orders/' + orderId).valueChanges();
+  // }
 
   deleteOrder(id: string) {
     return this.db.list('/orders/' + id).remove();
@@ -61,14 +84,16 @@ export class OrderService {
   // // }
 
   // getOrdersByUser(userId: string) {
-  //   // return this.db.list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
-  //     // .snapshotChanges().pipe(map(data => {
-  //     //   return data.map(action => {
-  //     //     const $key = action.payload.key;
-  //     //     const data = { $key, ...action.payload.val() };
-  //     //     return data;
-  //     //   });
-  //     // }));
+  //   console.log(userId);
+  //   this.userId = userId;
+  //   return this.db.list("/Orders", (ref) => {
+  //     return ref.orderByChild("userId").equalTo(userId);
+  //   }).snapshotChanges().pipe(
+  //     map((orders: any) => orders.map(prod => {
+  //       const payload = prod.payload.val();
+  //       const key = prod.key;
+  //       return <Order>{ key, ...payload };
+  //     })),
+  //   );
   // }
-
 }
