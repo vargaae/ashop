@@ -13,7 +13,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular5-data-table';
-import { CustomFormsModule } from 'ng2-validation';
 import { environment } from 'src/environments/environment';
 
 import { AdminModule } from './admin/admin.module';
@@ -38,7 +37,6 @@ import { ShoppingModule } from './shopping/shopping.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    CustomFormsModule,
     DataTableModule.forRoot(),
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
