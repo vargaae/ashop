@@ -1,6 +1,6 @@
-import { ProductService } from '../../shared/services/product.service';
+import { ProductService } from '../../../shared/services/product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Product } from '../../shared/models/product';
+import { Product } from '../../../shared/models/product';
 import { Subscription } from 'rxjs';
 import { fade, slide } from 'src/app/animations';
 import { DataTableResource } from 'angular5-data-table';

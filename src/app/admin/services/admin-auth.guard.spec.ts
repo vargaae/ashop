@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AdminAuthGuard } from './admin-auth.guard';
+import { AdminAuthGuard } from '../../shared/services/admin-auth.guard';
 
 describe('AdminAuthGuard', () => {
   let guard: AdminAuthGuard;
