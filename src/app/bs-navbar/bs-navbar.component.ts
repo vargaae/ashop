@@ -1,9 +1,9 @@
-import { ShoppingCartService } from './../services/shopping-cart.service';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { fade, slide } from '../animations';
-import { AuthService } from '../services/auth.service';
-import { AppUser } from './../models/app-user';
-import { ShoppingCart } from '../models/shopping-cart';
+import { AuthService } from '../shared/services/auth.service';
+import { AppUser } from '../shared/models/app-user';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 import { Observable } from 'rxjs';
 
 

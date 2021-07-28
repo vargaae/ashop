@@ -1,10 +1,10 @@
-import { ProductService } from './../../services/product.service';
-import { CategoryService } from './../../services/category.service';
+import { ProductService } from '../../shared/services/product.service';
+import { CategoryService } from '../../shared/services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { fade, slide } from 'src/app/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { Product } from '../../models/product';
+import { Product } from '../../shared/models/product';
 
 @Component({
   selector: 'app-product-form',

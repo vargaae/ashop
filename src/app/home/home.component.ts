@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'
+import { AuthService } from '../shared/services/auth.service'
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';

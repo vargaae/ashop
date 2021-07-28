@@ -1,12 +1,12 @@
-import { ShoppingCartService } from './../services/shopping-cart.service';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
 import { switchMap } from 'rxjs/operators';
-import { ProductService } from './../services/product.service';
+import { ProductService } from '../shared/services/product.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { fade, slide } from '../animations';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product';
+import { Product } from '../shared/models/product';
 import { Observable } from 'rxjs';
-import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 
 
 @Component({

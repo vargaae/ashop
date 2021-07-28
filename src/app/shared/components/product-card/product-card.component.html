@@ -1,1 +1,27 @@
-<p>product-card works!</p>
+<div *ngIf="product.title" class="card">
+  <img [src]="product.imageUrl" *ngIf="product.imageUrl" class="card-img-top" alt="{{ product.title }}">
+<div class="card-body">
+      <h2 class="card-title">{{ product.title }}</h2>
+      <p class="card-text">{{ product.price | currency:'EUR': 'symbol' }} /kg</p>
+</div>
+<div *ngIf="cart$ | async as cart">
+<div *ngIf="showActions" class="card-footer">
+
+  <div class="row g-0">
+    <button
+        *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
+        (click)="addToCart()"
+        class="btn btn-secondary"
+        >
+        Add to Cart
+    </button>
+  </div>
+
+  <ng-template #updateQuantity>
+    <product-quantity [product]="product" [shopping-cart]="cart"></product-quantity>
+  </ng-template>
+
+</div>
+</div>
+</div>
+

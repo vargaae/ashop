@@ -1,10 +1,10 @@
-import { Product } from './../models/product';
-import { ShoppingCartService } from './../services/shopping-cart.service';
+import { Product } from '../shared/models/product';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../shared/services/product.service';
 import { switchMap } from 'rxjs/operators';
 import { fade, slide } from '../animations';
 

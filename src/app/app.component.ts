@@ -1,7 +1,7 @@
-import { UserService } from './services/user.service';
+import { UserService } from './shared/services/user.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { fade, slide, bounceOutLeftAnimation } from './animations';
 import { animate, style, transition, trigger, useAnimation } from '@angular/animations';
 

@@ -1,4 +1,4 @@
-import { OrderService } from './../../../services/order.service';
+import { OrderService } from '../../services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';

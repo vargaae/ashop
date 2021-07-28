@@ -37,22 +37,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CustomFormsModule } from 'ng2-validation';
 
-import { AuthGuard } from './services/auth.guard';
-import { AdminAuthGuard } from './services/admin-auth.guard';
-import { UserService } from './services/user.service';
-import { AuthService } from './services/auth.service';
-import { CategoryService } from './services/category.service';
-import { ProductService } from './services/product.service';
-import { ShoppingCartService } from './services/shopping-cart.service';
+import { AuthGuard } from './shared/services/auth.guard';
+import { AdminAuthGuard } from './shared/services/admin-auth.guard';
+import { UserService } from './shared/services/user.service';
+import { AuthService } from './shared/services/auth.service';
+import { CategoryService } from './shared/services/category.service';
+import { ProductService } from './shared/services/product.service';
+import { ShoppingCartService } from './shared/services/shopping-cart.service';
 import { DataTableModule } from 'angular5-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ProductCardComponent } from './shared/components/product-card/product-card.component';
+import { ProductQuantityComponent } from './shared/components/product-quantity/product-quantity.component';
 import { ShoppingQuantityComponent } from './shopping-cart/shopping-quantity/shopping-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping/components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shopping/components/shipping-form/shipping-form.component';
 import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
-import { OrderService } from './services/order.service';
+import { OrderService } from './shared/services/order.service';
 import { OrderDetailsComponent } from './shared/components/order-details/order-details.component';
 
 @NgModule({
