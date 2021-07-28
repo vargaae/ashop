@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { fade } from '../animations';
-import { AuthService } from '../shared/services/auth.service';
+import { fade } from '../../animations';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({

@@ -6,7 +6,19 @@
     "paths": {
       "shared/*":[
         "/app/shared/*"
-      ]
+      ],
+      "admin/*":[
+        "/app/admin/*"
+      ],
+      "shopping/*":[
+        "/app/shopping/*"
+      ],
+      "core/*":[
+        "/app/core/*"
+      ],
+      "membership/*":[
+        "/app/membership/*"
+      ],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
