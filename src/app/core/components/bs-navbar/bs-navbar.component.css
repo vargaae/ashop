@@ -1,1 +1,5 @@
 .dropdown-item { cursor: pointer; }
+
+mat-icon {
+  size: 18dp;
+}
