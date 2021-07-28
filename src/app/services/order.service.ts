@@ -66,9 +66,9 @@ export class OrderService {
   //   // here we simply return the list of orders from Firebase
   // }
 
-  // getOrderById(orderId: string) {
-  //   return this.db.object('/orders/' + orderId).valueChanges();
-  // }
+  getOrderById(orderId: string) {
+    return this.db.object('/orders/' + orderId).valueChanges();
+  }
 
   deleteOrder(id: string) {
     return this.db.list('/orders/' + id).remove();

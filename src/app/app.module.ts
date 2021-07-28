@@ -53,6 +53,7 @@ import { ShoppingCartSummaryComponent } from './shopping/components/shopping-car
 import { ShippingFormComponent } from './shopping/components/shipping-form/shipping-form.component';
 import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
 import { OrderService } from './services/order.service';
+import { OrderDetailsComponent } from './shared/components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { OrderService } from './services/order.service';
     ProductQuantityComponent,
     ShoppingQuantityComponent,
     ShoppingCartSummaryComponent,
-    ShippingFormComponent
+    ShippingFormComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

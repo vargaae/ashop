@@ -1,43 +1,14 @@
 import { ShoppingCart } from './../../../models/shopping-cart';
 import { ShoppingCartService } from './../../../services/shopping-cart.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { trigger, transition, state, animate, animation, style, keyframes, useAnimation, query, animateChild, group, stagger } from '@angular/animations';
-import { fade, slide, bounceOutLeftAnimation, fadeInAnimation } from '../../../animations';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { todosAnimation, todoAnimation } from './check-out.component.animations';
 
 @Component({
   selector: 'check-out',
   templateUrl: './check-out.component.html',
   styleUrls: ['./check-out.component.css'],
-  animations: [
-    trigger('todosAnimation', [
-      transition(':enter', [
-        group([
-          query('h2', [
-            style({ transform: 'translateY(-20px)' }),
-            animate(1000)
-          ]),
-          query('@todoAnimation',
-            stagger(200, animateChild()))
-        ])
-      ])
-    ]),
-
-    trigger('todoAnimation', [
-      transition(':enter', [
-        useAnimation(fadeInAnimation, {
-          params: {
-            duration: '2s'
-          }
-        })
-      ]),
-      transition(':leave', [
-        style({backgroundColor: 'purple'}),
-        animate(1000),
-        useAnimation(bounceOutLeftAnimation)
-      ])
-     ])
-  ]
+  animations: [ todosAnimation, todoAnimation ]
 })
 
 export class CheckOutComponent implements OnInit {
