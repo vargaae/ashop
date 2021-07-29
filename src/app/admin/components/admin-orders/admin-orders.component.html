@@ -20,10 +20,10 @@
             <td>{{ order.datePlaced | date:'medium' }}</td>
             <td>
               <div class="btn-group">
-                <a [routerLink]="['/order-details', order.key]" class="btn btn-sm btn-primary">
+                <button mat-mini-fab color="primary" [routerLink]="['/order-details', order.key]">
                   <i class="fa fa-eye"></i>
-                </a>
-                <button (click)="deleteOrder(order)" class="btn btn-sm btn-danger">
+                </button>
+                <button mat-mini-fab color="warn" (click)="deleteOrder(order)">
                   <i class="fa fa-trash"></i>
                 </button>
               </div>

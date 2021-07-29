@@ -70,8 +70,8 @@ export class OrderService {
     return this.db.object('/orders/' + orderId).valueChanges();
   }
 
-  deleteOrder(id: string) {
-    return this.db.list('/orders/' + id).remove();
+  deleteOrder(orderId: string) {
+    return this.db.object('/orders/' + orderId).remove();
   }
 
   // // getOrdersByUser(userId: string) {

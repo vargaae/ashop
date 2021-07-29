@@ -8,7 +8,7 @@
 <div *ngIf="showActions" class="card-footer">
 
   <div class="row g-0">
-    <button
+    <button mat-raised-button color="primary"
         *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
         (click)="addToCart()"
         class="btn btn-secondary"

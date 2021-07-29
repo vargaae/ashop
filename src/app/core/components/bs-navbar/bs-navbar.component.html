@@ -1,9 +1,9 @@
 <nav @fade class="navbar navbar-expand navbar-light fixed-top bg-light">
     <div class="container">
-      <a class="navbar-brand" routerLink="/">
+      <button mat-button class="navbar-brand" routerLink="/">
         <i class="fa fa-leaf" aria-hidden="true"></i>
         A'-OShop
-      </a>
+      </button>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,10 +14,10 @@
           <ul class="navbar-nav mb-2 mb-md-0">
 
             <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
-              <a ngbDropdownToggle class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><strong>
+              <button mat-button ngbDropdownToggle class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><strong>
                 {{ appUser.name }}
                 </strong>
-              </a>
+              </button>
               <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" routerLink="/">Go Back Shopping</a></li>
                 <li><a class="dropdown-item" routerLink="/shopping-cart">Shopping Cart - Check-out</a></li>
@@ -43,9 +43,9 @@
             <ul class="navbar-nav mb-2 mb-md-0">
 
               <li class="nav-item">
-                <a class="nav-link" routerLink="/shopping-cart">
+                <button mat-button class="nav-link" routerLink="/shopping-cart" *ngIf="cart$ | async as cart">
                     <!-- Include text description of the icon's meaning for screen-readers -->
-                  <mat-icon matBadge="{{ cart.totalItemsCount }}" matBadgeColor="primary" *ngIf="cart$ | async as cart">shopping_cart</mat-icon>
+                  <mat-icon matBadge="{{ cart.totalItemsCount }}" matBadgeColor="primary">shopping_cart</mat-icon>
                     <span class="cdk-visually-hidden">
                       Shopping Cart icon with overlaid badge showing the number of products in the Shopping Cart
                     </span>
@@ -54,7 +54,7 @@
                 <span class="badge rounded-pill bg-warning text-dark" *ngIf="cart$ | async as cart">
                   {{ cart.totalItemsCount }}
                 </span> -->
-                </a>
+                </button>
               </li>
 
             </ul>

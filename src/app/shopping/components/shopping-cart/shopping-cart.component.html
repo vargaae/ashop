@@ -8,9 +8,10 @@
     <button @slide
     *ngIf="cart.items.length"
     (click)="clearCart()"
-    class="btn btn-light btn-sm">
+    class="float-right btn btn-light btn-sm">
     Clear Shopping Cart
   </button>
+  <!-- we want to render this button only if we have at least one item in our shopping cart -->
   </p>
   <table class="table">
     <thead>
@@ -54,11 +55,19 @@
   </table>
 </div>
 <button
+    mat-raised-button color="accent"
+    class="btn btn-secondary"
+    @slide
+    routerLink="/">
+    Continue Shopping
+  </button>
+  <button
     mat-raised-button color="primary"
+    class="btn btn-secondary"
     @slide
     *ngIf="cart.items.length"
     routerLink="/check-out">
     Check Out
   </button>
-
+<!-- we want to render this button only if we have at least one item in our shopping cart -->
 </ng-container>

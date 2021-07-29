@@ -5,6 +5,10 @@
   background-size: cover;
 }
 
-.card { 
+.card {
   margin-bottom: 80px;
+}
+
+button {
+  margin: 8px 8px 8px 0;
 }

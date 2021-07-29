@@ -1,17 +1,19 @@
 <div class="d-grid col mx-auto">
 
-<div class="row g-0">
+<div class="row g-0 align-middle">
 
   <div class="col-2">
-    <button (click)="removeFromCart()" class="btn btn-secondary">-</button>
+    <button mat-raised-button color="primary" (click)="removeFromCart()" class="btn btn-secondary">-</button>
   </div>
 
   <div class="col text-center">
+    <button mat-button routerLink="/shopping-cart">
     {{ shoppingCart.getQuantity(product) }} in cart
+  </button>
   </div>
 
   <div class="col-2">
-    <button (click)="addToCart()" class="btn btn-secondary">+</button>
+    <button mat-raised-button color="primary" (click)="addToCart()" class="btn btn-secondary">+</button>
   </div>
 
 </div>

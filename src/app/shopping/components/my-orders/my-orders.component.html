@@ -38,9 +38,9 @@
           </td>
           <td>{{ order.datePlaced | date:'medium' }}</td>
           <td>
-            <a [routerLink]="['/order-details', order.key]" class="btn btn-sm btn-primary">
+            <button mat-mini-fab color="primary" [routerLink]="['/order-details', order.key]">
               <i class="fa fa-eye"></i>
-            </a>
+            </button>
           </td>
         </tr>
       </tbody>
