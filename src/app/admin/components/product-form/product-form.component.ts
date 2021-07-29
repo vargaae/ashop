@@ -10,15 +10,16 @@ import { Product } from '../../../shared/models/product';
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'],
-  animations: [
-    fade,
-    slide
-  ]
+  animations: [ fade, slide ]
 })
 export class ProductFormComponent implements OnInit {
   categories$;
   id;
   product: Product={} as Product;
+  // minDate = new Date(2021, 7, 1);
+  // maxDate = new Date(2021, 8, 1);
+  minDate: Date;
+  maxDate: Date;
 
   constructor(
     private router: Router,
@@ -32,6 +33,11 @@ export class ProductFormComponent implements OnInit {
     if (this.id) this.productService.get(this.id)
         .pipe(take(1))
         .subscribe(p => this.product = p);
+
+    // Set the minimum to January 1st 1 year in the past and December 31st a year in the future.
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 1, 0, 1);
+    this.maxDate = new Date(currentYear + 1, 11, 31);
   }
 
   save(product) {
