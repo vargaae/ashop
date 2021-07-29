@@ -1,11 +1,4 @@
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
+$primary-color: #69995D;
 
 /*-----------------------------Button-------------------*/
 
@@ -17,7 +10,7 @@ $grid-breakpoints: (
   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
-  background-color: rgba(60, 255, 102, 0.801); /* Set a background color */
+  background-color: $primary-color; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   padding: 10px; /* Some padding */
