@@ -2,16 +2,20 @@
 
   <div class="row g-0 align-middle">
 
-    <div class="col-2">
-      <button mat-raised-button color="primary" (click)="removeFromCart()" class="btn btn-secondary">-</button>
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="removeFromCart()" class="btn btn-secondary" aria-label="Shopping Item-">
+        - <mat-icon  aria-hidden="false" aria-label="Shopping Cart">remove_shopping_cart</mat-icon>
+      </button>
     </div>
 
     <div class="col text-center">
       {{ shoppingCart.getShoppingCartItemQuantity(product) }} in cart
     </div>
 
-    <div class="col-2">
-      <button mat-raised-button color="primary" (click)="addToCart()" class="btn btn-secondary">+</button>
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="addToCart()" class="btn btn-secondary" aria-label="Shopping Item+">
+        <mat-icon  aria-hidden="false" aria-label="Shopping Cart">add_shopping_cart</mat-icon>
+        +</button>
     </div>
 
   </div>
