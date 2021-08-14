@@ -16,20 +16,20 @@ export class AuthService {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private route: ActivatedRoute,
+    private router: Router,
     private afAuth: AngularFireAuth
     ) {
       this.user$ = afAuth.authState;
   }
 
- loginWithGoogle() {
-   let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-   localStorage.setItem('returnUrl', returnUrl);
-   this.afAuth.signInWithRedirect(new firebase.default.auth.GoogleAuthProvider())
- }
+loginWithGoogle() {
+  let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+  localStorage.setItem('returnUrl', returnUrl);
+  this.afAuth.signInWithRedirect(new firebase.default.auth.GoogleAuthProvider())
+}
 
- logout(): void {
+logout(): void {
   this.afAuth.signOut();
   this.router.navigate(['/login']);
 }

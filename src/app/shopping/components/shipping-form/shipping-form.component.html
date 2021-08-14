@@ -21,19 +21,19 @@
 </mat-form-field>
 
 <mat-form-field class="shipping-full-width" appearance="fill">
-  <mat-label for="addressLine1">Address</mat-label>
-  <input
-      matInput
-      [(ngModel)]="shipping.addressLine1"
-      name="addressLine1"
-      #addressLine1="ngModel"
-      required
-      minlength="3"
-      id="addressLine1"
-      type="text"
-      >
+<mat-label for="addressLine1">Address</mat-label>
+<input
+    matInput
+    [(ngModel)]="shipping.addressLine1"
+    name="addressLine1"
+    #addressLine1="ngModel"
+    required
+    minlength="3"
+    id="addressLine1"
+    type="text"
+    >
 
-      <mat-error
+<mat-error
   *ngIf="addressLine1.touched && !addressLine1.valid">
   <mat-error *ngIf="addressLine1.errors?.required">Address Line 1 is required.</mat-error>
     <mat-error *ngIf="addressLine1.errors?.minlength">Address Line 1 should be minimum {{ addressLine1.errors?.minlength.requiredLength }} characters.</mat-error>

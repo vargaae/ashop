@@ -1,27 +1,28 @@
-import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { fade, slide } from '../../../animations';
-import { AuthService } from '../../../shared/services/auth.service';
 import { AppUser } from '../../../shared/models/app-user';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
-import { Observable } from 'rxjs';
+import { AuthService } from '../../../shared/services/auth.service';
+import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 
 
 @Component({
   selector: 'bs-navbar',
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.css'],
-  animations: [
-    fade,
-    slide
-  ]
+  animations: [ fade, slide ]
 })
 export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
 
   cart$: Observable<ShoppingCart>;
 
-  constructor(public auth: AuthService, private shoppingCartService: ShoppingCartService) {
+  constructor(
+    public auth: AuthService,
+    private shoppingCartService: ShoppingCartService
+    ) {
 
   }
 

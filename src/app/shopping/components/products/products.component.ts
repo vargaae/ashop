@@ -13,10 +13,7 @@ import { ShoppingCart } from '../../../shared/models/shopping-cart';
   selector: 'products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  animations: [
-    fade,
-    slide
-  ]
+  animations: [ fade, slide ]
 })
 export class ProductsComponent implements OnInit {
   @HostListener("window:scroll", []) onWindowScroll() {

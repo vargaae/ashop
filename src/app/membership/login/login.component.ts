@@ -15,12 +15,12 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(
-    public auth: AuthService, 
-    private router: Router
-    ) {
-    
-   }
+constructor(
+  public auth: AuthService,
+  private router: Router
+  ) {
+
+  }
 
   loginWithGoogle() {
     this.auth.loginWithGoogle();
