@@ -1,18 +1,35 @@
-<h1><mat-icon aria-hidden="false" aria-label="Shopping Cart">shopping_cart</mat-icon> Shopping Cart</h1>
-  <ng-container *ngIf="cart$ | async as cart">
-  <!-- <div class="card" *ngIf="cart$ | async as cart"> -->
-<div @slide class="row col-10">
-  <!-- <div @slide class="card-body"> -->
-  <p>
+<ng-container *ngIf="cart$ | async as cart">
+
+<mat-card class="shopping-cart-card">
+  <mat-card-header>
+    <mat-card-title class="title">
+      Shopping Cart
+      <mat-icon aria-hidden="true">shopping_cart</mat-icon>
+      <hr>
+      <button
+      mat-raised-button color="accent"
+      class="btn btn-secondary"
+        @slide
+        routerLink="/" id="shopping">
+        Continue Shopping
+      </button>
+    </mat-card-title>
+    <!-- <div class="card" *ngIf="cart$ | async as cart"> -->
+      <div @slide class="row col-10">
+        <!-- <div @slide class="card-body"> -->
+          <mat-card-subtitle>
+            <h3>
     You have {{ cart.totalItemsCount }} items in your shopping cart.
     <button @slide
     *ngIf="cart.items.length"
     (click)="clearCart()"
-    class="float-right btn btn-light btn-sm">
+    class="float-right btn btn-light btn-sm" id="clearcart">
     Clear Shopping Cart
   </button>
   <!-- we want to render this button only if we have at least one item in our shopping cart -->
-  </p>
+
+</h3>
+</mat-card-subtitle>
   <table class="table">
     <thead>
       <tr>
@@ -54,13 +71,9 @@
     </tfoot>
   </table>
 </div>
-<button
-    mat-raised-button color="accent"
-    class="btn btn-secondary"
-    @slide
-    routerLink="/">
-    Continue Shopping
-  </button>
+</mat-card-header>
+
+<mat-card-actions>
   <button
     mat-raised-button color="primary"
     class="btn btn-secondary"
@@ -70,4 +83,8 @@
     Check Out
   </button>
 <!-- we want to render this button only if we have at least one item in our shopping cart -->
+</mat-card-actions>
+
+</mat-card>
+
 </ng-container>
