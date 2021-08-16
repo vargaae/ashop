@@ -1,13 +1,13 @@
 {
   "name": "ashop",
-  "version": "0.6.7",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "s": "ng serve --o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "d": "ng build -c production && firebase deploy"
+    "deploy:firebase": "ng build -c production && firebase deploy"
   },
   "private": true,
   "dependencies": {
