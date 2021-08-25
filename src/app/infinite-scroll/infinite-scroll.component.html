@@ -1,0 +1,24 @@
+<ng-container *ngIf="infinite | async as filteredProducts">
+
+
+  <cdk-virtual-scroll-viewport itemSize="100" (scrolledIndexChange)="nextBatch($event, (filteredProducts[filteredProducts.length - 1].title))">
+
+
+    <li *cdkVirtualFor="let product of filteredProducts; let i = index; trackBy: trackByIdx" class="animatedlist">
+      <div *ngIf="product.title" class="card">
+        <img [src]="product.imageUrl" *ngIf="product.imageUrl" class="card-img-top" alt="{{ product.title }}">
+      <div class="card-body">
+            <h2 class="card-title">{{ product.title }}</h2>
+            <p class="card-text">{{ product.price | currency:'EUR': 'symbol' }} /kg</p>
+      </div>
+      </div>
+      <!-- <h2>{{ i }}. {{ p.emoji }} {{ p.name }}</h2>
+      <p> {{ p.bio }} </p> -->
+    </li>
+
+    <iframe *ngIf="theEnd" src="https://giphy.com/embed/lD76yTC5zxZPG" width="480"
+      height="352" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+  </cdk-virtual-scroll-viewport>
+
+</ng-container>

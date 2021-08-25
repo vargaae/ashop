@@ -1,12 +1,13 @@
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { switchMap } from 'rxjs/operators';
 import { ProductService } from '../../../shared/services/product.service';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { fade, slide } from '../../../animations';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../shared/models/product';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 
 @Component({
@@ -19,6 +20,14 @@ export class ProductsComponent implements OnInit {
   @HostListener("window:scroll", []) onWindowScroll() {
     this.scrollFunction();
   }
+  @ViewChild(CdkVirtualScrollViewport)
+  viewport: CdkVirtualScrollViewport;
+
+  batch = 20;
+  theEnd = false;
+
+  offset = new BehaviorSubject(null);
+  infinite: Observable<any[]>;
     // products$;
   // a field which is an observable of products
   products: Product[] = [];

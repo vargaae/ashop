@@ -1,91 +1,94 @@
 <div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)" class="product-form">
+      <mat-form-field class="product-full-width" appearance="fill" @slide>
+        <mat-label @fade for="title">Title</mat-label>
+        <input
+          matInput
+          [(ngModel)]="product.title"
+          name="title"
+          #title="ngModel"
+          required
+          minlength="3"
+          id="title"
+          type="text"
+        />
+        <mat-error *ngIf="title.touched && !title.valid">
+          <mat-error *ngIf="title.errors?.required"
+            >Title is required.</mat-error
+          >
+          <mat-error *ngIf="title.errors?.minlength"
+            >Title should be minimum
+            {{ title.errors?.minlength.requiredLength }} characters.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
 
-    <div class="col-md-6">
-        <form #f="ngForm" (ngSubmit)="save(f.value)" class="product-form">
+      <mat-form-field class="product-full-width" appearance="fill" @slide>
+        <mat-label @fade for="price">Price (/kg)</mat-label>
 
-          <mat-form-field class="product-full-width" appearance="fill" @slide>
-            <mat-label @fade for="title">Title</mat-label>
-            <input
-                matInput
-                [(ngModel)]="product.title"
-                name="title"
-                #title="ngModel"
-                required
-                minlength="3"
-                id="title"
-                type="text"
-              >
-            <mat-error
-               *ngIf="title.touched && !title.valid">
-                <mat-error *ngIf="title.errors?.required">Title is required.</mat-error>
-                <mat-error *ngIf="title.errors?.minlength">Title should be minimum {{ title.errors?.minlength.requiredLength }} characters.</mat-error>
-         </mat-error>
-         </mat-form-field>
+        <!-- <span class="input-group-text">€</span> -->
+        <input
+          matInput
+          [(ngModel)]="product.price"
+          name="price"
+          #price="ngModel"
+          required
+          [min]="0"
+          id="price"
+          type="number"
+        />
 
-            <mat-form-field class="product-full-width" appearance="fill" @slide>
-            <mat-label @fade for="price">Price (/kg)</mat-label>
+        <mat-error *ngIf="price.touched && !price.valid">
+          <mat-error *ngIf="price.errors?.required"
+            >Price is required.</mat-error
+          >
+          <mat-error *ngIf="price.errors?.min"
+            >Price should be 0 or higher.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="product-full-width" appearance="fill" @slide>
+        <mat-label @fade for="category">Category</mat-label>
+        <mat-select
+          [(ngModel)]="product.category"
+          name="category"
+          #category="ngModel"
+          required
+          id="category"
+        >
+          <mat-option *ngFor="let c of categories$ | async" [value]="c.key">
+            {{ c.payload.val().name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="category.touched && !category.valid">
+          Category is required.
+        </mat-error>
+      </mat-form-field>
 
-                    <!-- <span class="input-group-text">€</span> -->
-                    <input
-                    matInput
-                        [(ngModel)]="product.price"
-                        name="price"
-                        #price="ngModel"
-                        required
-                        [min]="0"
-                        id="price"
-                        type="number">
+      <mat-form-field class="product-full-width" appearance="fill" @slide>
+        <mat-label @fade for="imageUrl">Image URL</mat-label>
+        <input
+          matInput
+          [(ngModel)]="product.imageUrl"
+          name="imageUrl"
+          #imageUrl="ngModel"
+          required
+          url
+          id="imageUrl"
+          type="text"
+        />
+        <mat-error *ngIf="imageUrl.touched && imageUrl.invalid">
+          <mat-error *ngIf="imageUrl.errors?.required"
+            >Image URL is required.</mat-error
+          >
+          <mat-error *ngIf="imageUrl.errors?.url"
+            >Please enter a valid URL.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
 
-                <mat-error
-                        *ngIf="price.touched && !price.valid">
-                             <mat-error *ngIf="price.errors?.required">Price is required.</mat-error>
-                             <mat-error *ngIf="price.errors?.min">Price should be 0 or higher.</mat-error>
-                    </mat-error>
-
-                  </mat-form-field>
-            <mat-form-field class="product-full-width" appearance="fill" @slide>
-            <mat-label @fade for="category">Category</mat-label>
-                <mat-select
-                     [(ngModel)]="product.category"
-                    name="category"
-                    #category="ngModel"
-                    required
-                    id="category">
-                    <mat-option
-                        *ngFor="let c of categories$ | async"
-                        [value]="c.key">
-                        {{ c.payload.val().name }}
-                    </mat-option>
-
-                  </mat-select>
-                    <mat-error
-                        *ngIf="category.touched && !category.valid">
-                        Category is required.
-                    </mat-error>
-
-                  </mat-form-field>
-
-            <mat-form-field class="product-full-width" appearance="fill" @slide>
-            <mat-label @fade for="imageUrl">Image URL</mat-label>
-                <input
-                    matInput
-                    [(ngModel)]="product.imageUrl"
-                    name="imageUrl"
-                    #imageUrl="ngModel"
-                    required
-                    url
-                    id="imageUrl"
-                    type="text"
-                    >
-                    <mat-error
-                        *ngIf="imageUrl.touched && imageUrl.invalid">
-
-                             <mat-error *ngIf="imageUrl.errors?.required">Image URL is required.</mat-error>
-                             <mat-error *ngIf="imageUrl.errors?.url">Please enter a valid URL.</mat-error>
-                    </mat-error>
-                  </mat-form-field>
-
-            <!-- TODO: TimeStamp
+      <!-- TODO: TimeStamp
             <mat-form-field class="product-full-width" appearance="fill" @slide>
             <mat-label @fade for="date">Date</mat-label>
                 <input
@@ -98,32 +101,44 @@
                     >
 
             </mat-form-field> -->
-            <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Choose a date</mat-label>
-              <input
-                  matInput
-                  (focus)="picker.open()"
-                  [min]="minDate"
-                  [max]="maxDate"
-                  [matDatepicker]="picker">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker touchUi="true"></mat-datepicker>
-            </mat-form-field>
-          </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            (focus)="picker.open()"
+            [min]="minDate"
+            [max]="maxDate"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker touchUi="true"></mat-datepicker>
+        </mat-form-field>
+      </p>
 
-
-            <!-- <br> FOR DEVELOPING TO SEE THE VALUES:
+      <!-- <br> FOR DEVELOPING TO SEE THE VALUES:
             <p>{{ f.value | json }}</p>
             <br> -->
 
-            <button mat-raised-button color="primary" @fade [disabled]="!f.valid">Save</button>
-            <button mat-raised-button color="warn" type="button" @fade (click)="delete()" >Delete</button>
-        </form>
-    </div>
+      <button mat-raised-button color="primary" @fade [disabled]="!f.valid">
+        Save
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        @fade
+        (click)="delete()"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
 
-    <div class="col-md-6">
-        <product-card [product]="product" [show-actions]="false"></product-card>
-    </div>
-
+  <div class="col-md-6">
+    <product-card [product]="product" [show-actions]="false"></product-card>
+  </div>
 </div>

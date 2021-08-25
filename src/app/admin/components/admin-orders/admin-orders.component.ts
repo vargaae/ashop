@@ -14,6 +14,7 @@ export class AdminOrdersComponent implements OnInit {
   orders$;
   id;
   order: Order={} as Order;
+  key;
 
 
   constructor(

@@ -11,10 +11,7 @@ import { DataTableResource } from 'angular5-data-table';
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css'],
-  animations: [
-    fade,
-    slide
-  ]
+  animations: [ fade, slide ]
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[]= [];

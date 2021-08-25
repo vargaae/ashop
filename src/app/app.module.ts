@@ -15,10 +15,12 @@ import { CoreModule } from './core/core.module';
 import { MembershipModule } from './membership/membership.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingModule } from './shopping/shopping.module';
+import { InfiniteScrollComponent } from './infinite-scroll/infinite-scroll.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InfiniteScrollComponent
   ],
   imports: [
     BrowserModule,
