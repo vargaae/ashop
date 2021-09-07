@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../shared/models/product';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+// import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 
 @Component({
@@ -17,17 +17,14 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   animations: [ fade, slide ]
 })
 export class ProductsComponent implements OnInit {
-  @HostListener("window:scroll", []) onWindowScroll() {
-    this.scrollFunction();
-  }
-  @ViewChild(CdkVirtualScrollViewport)
-  viewport: CdkVirtualScrollViewport;
+  // @ViewChild(CdkVirtualScrollViewport)
+  // viewport: CdkVirtualScrollViewport;
 
-  batch = 20;
-  theEnd = false;
+  // batch = 20;
+  // theEnd = false;
 
-  offset = new BehaviorSubject(null);
-  infinite: Observable<any[]>;
+  // offset = new BehaviorSubject(null);
+  // infinite: Observable<any[]>;
     // products$;
   // a field which is an observable of products
   products: Product[] = [];
@@ -45,21 +42,6 @@ export class ProductsComponent implements OnInit {
     this.cart$ = await this.shoppingCartService.getCart();
     this.populateProducts();
   }
-
-  // When the user scrolls down 20px from the top of the document, show the button
-scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.getElementById("myBtn").style.display = "block";
-  } else {
-      document.getElementById("myBtn").style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-topFunction() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
 
   private populateProducts() {
     this.productService

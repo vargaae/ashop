@@ -1,0 +1,11 @@
+div {
+  margin: auto;
+  /* width: 50%; */
+  padding: 10px;
+  text-align: center;
+}
+
+img {
+  border: 3px solid green;
+  max-height: 25rem;
+}

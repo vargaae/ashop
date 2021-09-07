@@ -1,59 +1,53 @@
 <h3>Manage Orders</h3>
 <div *ngIf="orders$ | async as orders">
   <ng-container *ngIf="orders.length > 0; else orderInfo">
-    <!-- <table class="table table-hover table-bordered"> -->
     <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Customer</th>
-            <th>Address</th>
-            <th>Order Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orders">
-            <td>{{ order.shipping.name }}</td>
-            <td>
-              {{ order.shipping.addressLine1 }}<span *ngIf="order.shipping.addressLine2">, {{ order.shipping.addressLine2 }}</span>
-            </td>
-            <td>{{ order.datePlaced | date:'medium' }}</td>
-            <td>
-              <div class="btn-group">
-                <button mat-mini-fab color="primary" [routerLink]="['/order-details', order.key]">
-                  <i class="fa fa-eye"></i>
-                </button>
-                <button mat-mini-fab color="warn" (click)="deleteOrder(order)">
-                  <i class="fa fa-trash"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Address</th>
+          <th>Order ID</th>
+          <th>Order Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders$ | async">
+          <td>{{ order.shipping.name }}</td>
+          <td>
+            {{ order.shipping.addressLine1
+            }}<span *ngIf="order.shipping.addressLine2"
+              >, {{ order.shipping.addressLine2 }}</span
+            >
+          </td>
+          <td>{{ order.key }}</td>
+          <td>{{ order.datePlaced | date: "medium" }}</td>
+          <td>
+            <div class="btn-group">
+              <button
+                mat-mini-fab
+                color="primary"
+                [routerLink]="['/order-details', order.key]"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+              <button
+                mat-mini-fab
+                color="warn"
+                (click)="
+                  deleteOrder(order.shipping.name, order.key, order.datePlaced)
+                "
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </ng-container>
 </div>
 
 <ng-template #orderInfo>
   <p class="alert alert-info">There are no orders currently</p>
 </ng-template>
-
-<!-- <h1>Orders</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Date</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let order of orders$ | async">
-      <td>{{ order.shipping.name }}</td>
-      <td>{{ order.datePlaced | date}}</td>
-      <td>
-        <a href="#">View</a>
-      </td>
-    </tr>
-  </tbody>
-</table> -->

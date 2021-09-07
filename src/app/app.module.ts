@@ -12,10 +12,8 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { MembershipModule } from './membership/membership.module';
-import { SharedModule } from './shared/shared.module';
-import { ShoppingModule } from './shopping/shopping.module';
 import { InfiniteScrollComponent } from './infinite-scroll/infinite-scroll.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,8 +25,6 @@ import { InfiniteScrollComponent } from './infinite-scroll/infinite-scroll.compo
     CoreModule,
     SharedModule,
     AdminModule,
-    ShoppingModule,
-    MembershipModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

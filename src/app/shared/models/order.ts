@@ -2,12 +2,8 @@ import { Shipping } from './shipping';
 import { ShoppingCart } from "./shopping-cart";
 
 export class Order {
-  id(id: any) {
-    throw new Error('Method not implemented.');
-  }
   datePlaced: number;
   items: any[];
-  // $key: string;
 
   constructor(public userId: string, public shipping: Shipping, shoppingCart: ShoppingCart) {
     this.datePlaced = new Date().getTime();

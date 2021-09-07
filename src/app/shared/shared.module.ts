@@ -7,19 +7,19 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular5-data-table';
 import { CustomFormsModule } from 'ng2-validation';
-import { AppRoutingModule } from '../app-routing.module';
+// import { AppRoutingModule } from '../app-routing.module';
 
 import { MaterialModule } from '../material-module';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
-import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
+// import { SharedRoutingModule } from './shared-routing.module';
 
 
 
@@ -31,7 +31,8 @@ import { UserService } from './services/user.service';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    // AppRoutingModule,
+    // SharedRoutingModule,
     FormsModule,
     CustomFormsModule,
     MaterialModule,
@@ -43,7 +44,7 @@ import { UserService } from './services/user.service';
   ],
   exports: [
     CommonModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     FormsModule,
     CustomFormsModule,
     MaterialModule,
@@ -57,7 +58,6 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     AuthService,
-    AuthGuard,
     UserService,
     CategoryService,
     ProductService,

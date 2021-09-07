@@ -1,5 +1,5 @@
-import { Product } from "./product";
-import { ShoppingCartItem } from "./shopping-cart-item";
+import { Product } from './product';
+import { ShoppingCartItem } from './shopping-cart-item';
 
 export class ShoppingCart {
   // product: Product;
@@ -13,12 +13,12 @@ export class ShoppingCart {
     for (let productId in itemsMap) {
       let item = this.itemsMap[productId];
       this.items.push(new ShoppingCartItem({ ...item, key: productId }));
-        // when we apply the spread operator to an object TypeScript will iterate over all the properties of this object and add them here (in ...item); so the three lines commented above are exactly the same as the ...item line
+      // when we apply the spread operator to an object TypeScript will iterate over all the properties of this object and add them here (in ...item); so the three lines commented above are exactly the same as the ...item line
 
       // let x = new ShoppingCartItem({
-        // title: item.title,
-        // imageUrl: item.imageUrl,
-        // price: item.price,
+      // title: item.title,
+      // imageUrl: item.imageUrl,
+      // price: item.price,
       //   ...item,
       //   key: productId
       // });
@@ -49,10 +49,9 @@ export class ShoppingCart {
 
   get totalPrice() {
     let sum = 0;
-    for (let productId in this.items)
-      sum += this.items[productId].totalPrice;
+    for (let productId in this.items) sum += this.items[productId].totalPrice;
     return sum;
-   }
+  }
 
   // JavaScript code for getting array of keys from an Object:
   // get productIds() {
@@ -61,10 +60,7 @@ export class ShoppingCart {
 
   get totalItemsCount() {
     let count = 0;
-  for (let productId in this.items)
-    count += this.items[productId].quantity;
+    for (let productId in this.items) count += this.items[productId].quantity;
     return count;
   }
-
-
 }

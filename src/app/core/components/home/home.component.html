@@ -1,17 +1,34 @@
 <!-- Animated welcome text -->
 <div @fade>
-  <h4 *ngIf="user$ | async as user; else anonymousUser">
-    Dear {{ user.displayName }}, <br>
-</h4>
-<ng-template #anonymousUser>
-<h4>
-    Dear {{ name }},
-</h4>
-</ng-template>
+  <ng-container *ngIf="user$ | async as user; else anonymousUser">
+    <h4>Dear {{ user.displayName }},</h4>
+  </ng-container>
+  <ng-template #anonymousUser>
+    <h4>Dear {{ name }},</h4>
+  </ng-template>
+  <img
+    src="../../../../assets/images/fruit-1131172_960_720.jpg"
+    class="img-fluid"
+    style="border-radius: 4px"
+  />
 </div>
 <div @slide>
+  <br />
+  <br />
   <h4>
-    Welcome to my A-OrganicShop Application!
+    Welcome to A-OrganicShop Application!
+    <hr />
+    <a mat-button routerLink="/products">Click here to Start the Shopping</a>
   </h4>
+  <ng-container *ngIf="user$ | async as user; else anonymousUserFooter">
+    <h4>
+      You are logged in successfully, as <strong>{{ user.displayName }}</strong
+      >,<br />
+      so after shopping, you will be able to place order.<br />
+    </h4>
+  </ng-container>
+  <ng-template #anonymousUserFooter>
+    <h4>Please login to place your orders after shopping:<br /></h4>
+    <a mat-button routerLink="/login">Click here to Login</a>
+  </ng-template>
 </div>
-

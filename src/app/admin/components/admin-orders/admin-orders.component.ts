@@ -1,9 +1,10 @@
-import { Order } from '../../../shared/models/order';
-import { OrderService } from '../../../shared/services/order.service';
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
+import { OrderService } from '../../../shared/services/order.service';
 
 @Component({
   selector: 'app-admin-orders',
@@ -12,16 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AdminOrdersComponent implements OnInit {
   orders$;
-  id;
-  order: Order={} as Order;
-  key;
-
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
     private orderService: OrderService) {
-    // this.orders$ = orderService.getOrders();
   }
 
   ngOnInit() {
@@ -29,21 +25,17 @@ export class AdminOrdersComponent implements OnInit {
       .pipe(switchMap(user => {
         return this.orderService.getOrdersByUser(user.uid);
       }));
-
-    //   this.id = this.route.snapshot.paramMap.get('id');
-    // if (this.id) this.orderService.getOrders(this.id)
-    //     .pipe(take(1))
-    //     .subscribe(o => this.order = o);
   }
 
-  deleteOrder() {
-    if (!confirm('Are you sure you want to delete this order?')) return;
+  deleteOrder(orderCustomer: string, orderId: string, orderDate: Date) {
+    const orderDateString = formatDate(orderDate, 'MMMM d, y, h:mm:ss a z','en');
+    if (!confirm('Are you sure you want to delete this order: \n' +
+                  'Customer: ' + orderCustomer + ',\n'
+                  + 'Order Placed on: ' + orderDateString + ', \n'
+                  + 'OrderID: ' + orderId + ' ?'
+                  ))
+                  return;
 
-    this.orderService.deleteOrder(this.id);
-    // this.orderService.deleteOrder(order.key)
-    //   .then(data => {
-    //     console.log(data);
-    //   });
+    this.orderService.deleteOrder(orderId);
   }
-
 }
