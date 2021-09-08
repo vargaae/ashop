@@ -45,13 +45,17 @@ Login
 
 <mat-card>
   <!-- Calling GoogleAuth Api from AuthService -->
-  <button (click)="loginWithGoogle()" mat-button style="padding: 1rem">
-    <img
-      src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg"
-      style="width: 50px; height: 30px"
-    />
-    Sign in with Google
-  </button>
+  <button
+        (click)="loginWithGoogle()"
+        mat-raised-button
+        style="padding: 1rem"
+      >
+        <img
+          src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg"
+          style="width: 50px; height: 30px"
+        />
+        Sign in with Google
+      </button>
   <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
     <p>
       <mat-form-field appearance="outline">
@@ -61,7 +65,7 @@ Login
           formControlName="email"
           type="email"
           matInput
-          placeholder="Email"
+          placeholder="andrasorganicshop@outlook.com"
         />
       </mat-form-field>
     </p>
@@ -73,7 +77,7 @@ Login
           formControlName="password"
           type="password"
           matInput
-          placeholder="Password"
+          placeholder="admin1"
         />
       </mat-form-field>
     </p>
@@ -83,6 +87,10 @@ Login
 
     <button mat-raised-button color="primary">Login</button>
   </form>
+  For Testing the Application as an Admin User,<br>
+  you can Sign in as<br>
+  andrasorganicshop@outlook.com<br>
+  admin1
 </mat-card>
 
 <div
