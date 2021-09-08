@@ -1,58 +1,102 @@
 <nav @fade class="navbar navbar-expand navbar-light fixed-top bg-light">
-    <div class="container">
-      <a mat-button class="navbar-brand" routerLink="/">
-        <i class="fa fa-leaf" aria-hidden="true"></i>
-        A'-OShop
-      </a>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-          </ul>
-          <ul class="navbar-nav mb-2 mb-md-0">
-            <!-- <mat-list *ngIf="(user | async)">
-              <mat-list-item>TODO: Fix the Display Name and Logout: {{ (user | async)?.displayName }}</mat-list-item>
-          </mat-list> -->
-            <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
-              <button mat-button ngbDropdownToggle class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><strong>
-                {{ (user | async)?.displayName }}{{ appUser.name }}
-                </strong>
-              </button>
-              <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" routerLink="/products">Go Back Shopping</a></li>
-                <li><a class="dropdown-item" routerLink="/shopping-cart">Shopping Cart - Check-out</a></li>
-                <ng-container *ngIf="appUser.isAdmin">
-                    <li><a ngbDropdownItem class="dropdown-item" routerLink="/admin/admin-orders">Manage Orders</a></li>
-                    <li><a ngbDropdownItem class="dropdown-item" routerLink="/admin/admin-products">Manage Products</a></li>
-                </ng-container>
-
-                <li><a ngbDropdownItem class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a ngbDropdownItem class="dropdown-item" (click)="logout()">Log Out</a></li>
-              </ul>
+  <div class="container">
+    <a mat-button class="navbar-brand" routerLink="/">
+      <i class="fa fa-leaf" aria-hidden="true"></i>
+      A'-OShop
+    </a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
+      <ul class="navbar-nav mb-2 mb-md-0">
+        <li
+          *ngIf="appUser; else anonymousUser"
+          ngbDropdown
+          class="nav-item dropdown"
+        >
+          <button
+            mat-button
+            ngbDropdownToggle
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            <strong>
+              {{ (user | async)?.displayName }}{{ appUser.name }}
+            </strong>
+          </button>
+          <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+            <li>
+              <a class="dropdown-item" routerLink="/products"
+                >Go Back Shopping</a
+              >
             </li>
-
-            <ng-template #anonymousUser>
-              <li class="nav-item">
-                <button mat-button class="nav-link" routerLink="/login"><strong>Login</strong></button>
+            <li>
+              <a class="dropdown-item" routerLink="/shopping-cart"
+                >Shopping Cart - Check-out</a
+              >
+            </li>
+            <ng-container *ngIf="(user | async)?.accountType == 'admin'">
+              <!-- <ng-container *ngIf="appUser.isAdmin"> -->
+              <li>
+                <a
+                  ngbDropdownItem
+                  class="dropdown-item"
+                  routerLink="/admin/admin-orders"
+                  >Manage Orders</a
+                >
               </li>
-            </ng-template>
-
-            </ul>
-
-            <ul class="navbar-nav mb-2 mb-md-0">
-
-              <li *ngIf="cart$ | async as cart">
-                <a mat-button routerLink="/shopping-cart" aria-label="Shopping Cart">
-                  <!-- Include text description of the icon's meaning for screen-readers -->
-                    <mat-icon matBadge="{{ cart.totalItemsCount }}" matBadgeColor="primary" aria-hidden="false" aria-label="Shopping Cart">shopping_cart</mat-icon>
-                    <span class="cdk-visually-hidden">
-                      Shopping Cart icon with overlaid badge showing the number of products in the Shopping Cart
-                    </span>
-                </a>
+              <li>
+                <a
+                  ngbDropdownItem
+                  class="dropdown-item"
+                  routerLink="/admin/admin-products"
+                  >Manage Products</a
+                >
               </li>
+            </ng-container>
 
-            </ul>
-      </div>
+            <li>
+              <a ngbDropdownItem class="dropdown-item" routerLink="/my/orders"
+                >My Orders</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a ngbDropdownItem class="dropdown-item" (click)="logout()"
+                >Log Out</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <ng-template #anonymousUser>
+          <li class="nav-item">
+            <button mat-button class="nav-link" routerLink="/login">
+              <strong>Login</strong>
+            </button>
+          </li>
+        </ng-template>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-md-0">
+        <li *ngIf="cart$ | async as cart">
+          <a mat-button routerLink="/shopping-cart" aria-label="Shopping Cart">
+            <!-- Include text description of the icon's meaning for screen-readers -->
+            <mat-icon
+              matBadge="{{ cart.totalItemsCount }}"
+              matBadgeColor="primary"
+              aria-hidden="false"
+              aria-label="Shopping Cart"
+              >shopping_cart</mat-icon
+            >
+            <span class="cdk-visually-hidden">
+              Shopping Cart icon with overlaid badge showing the number of
+              products in the Shopping Cart
+            </span>
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 <top-button></top-button>

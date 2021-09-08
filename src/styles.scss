@@ -34,6 +34,15 @@ $primary-color-hover: #34623F;
 body {
   padding-top: 80px;
 }
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+body::-webkit-scrollbar-thumb {
+  background: #181fb5;
+}
 
 #myBtn {
 

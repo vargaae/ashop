@@ -6,7 +6,7 @@ Dashboard
     <mat-icon>home</mat-icon>
     <span>Home</span>
 </button>
-
+<a mat-button routerLink="/products">Click here to Start the Shopping</a>
 <mat-list *ngIf="(user | async)">
     <mat-list-item>Account Type: {{ (user | async)?.accountType }}</mat-list-item>
     <mat-list-item>Display Name: {{ (user | async)?.displayName }}</mat-list-item>

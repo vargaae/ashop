@@ -20,7 +20,8 @@ export class AuthGuard implements CanActivate {
                 .pipe(map(
                     user => {
                         if(user) return true;
-                        
+
+                        console.log('Auth Guard: user is not logged in');
                         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
                         return false;
             }))

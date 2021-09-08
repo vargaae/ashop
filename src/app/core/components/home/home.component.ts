@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -14,19 +14,30 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrls: ['./home.component.css'],
   animations: [fade, slide],
 })
-export class HomeComponent {
-  name = 'Visitor';
-
+export class HomeComponent implements OnInit  {
+  anonymous = 'Visitor';
+  user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
   user$: Observable<firebase.default.User>;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private afAuth: AngularFireAuth,
+    public afAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
     this.user$ = afAuth.authState;
   }
+
+  ngOnInit(): void {
+    this.afAuth.authState.subscribe(user => {
+        console.log('Dashboard: user', user);
+
+        if (user) {
+            let emailLower = user.email.toLowerCase();
+            this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+        }
+    });
+}
 
   logout(): void {
     this.afAuth.signOut();
