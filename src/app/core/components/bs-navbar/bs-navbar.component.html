@@ -9,10 +9,12 @@
 
           </ul>
           <ul class="navbar-nav mb-2 mb-md-0">
-
+            <!-- <mat-list *ngIf="(user | async)">
+              <mat-list-item>TODO: Fix the Display Name and Logout: {{ (user | async)?.displayName }}</mat-list-item>
+          </mat-list> -->
             <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
               <button mat-button ngbDropdownToggle class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><strong>
-                {{ appUser.name }}
+                {{ (user | async)?.displayName }}{{ appUser.name }}
                 </strong>
               </button>
               <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-dark">
