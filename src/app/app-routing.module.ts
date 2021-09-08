@@ -34,6 +34,34 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./membership/components/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import(
+        './membership/components/admin-dashboard/admin-dashboard.module'
+      ).then((m) => m.AdminDashboardModule),
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () =>
+      import(
+        './membership/components/forgot-password/forgot-password.module'
+      ).then((m) => m.ForgotPasswordModule),
+  },
+  {
+    path: 'verify-email',
+    loadChildren: () =>
+      import('./membership/components/verify-email/verify-email.module').then(
+        (m) => m.VerifyEmailModule
+      ),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./membership/membership.module').then(
@@ -88,10 +116,6 @@ const routes: Routes = [
     component: AdminOrdersComponent,
     canActivate: [AuthGuard, AdminAuthGuard],
   },
-  { path: 'membership/components/dashboard', loadChildren: () => import('./membership/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-  { path: 'membership/components/admin-dashboard', loadChildren: () => import('./membership/components/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule) },
-  { path: 'membership/components/forgot-password', loadChildren: () => import('./membership/components/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
-  { path: 'membership/components/verify-email', loadChildren: () => import('./membership/components/verify-email/verify-email.module').then(m => m.VerifyEmailModule) },
 
   { path: '**', component: HomeComponent },
 ];
