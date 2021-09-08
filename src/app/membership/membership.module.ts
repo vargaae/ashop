@@ -1,8 +1,9 @@
-import { MembershipRoutingModule } from './membership-routing.module';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import { MembershipRoutingModule } from './membership-routing.module';
 
 
 
@@ -12,7 +13,8 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     MembershipRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class MembershipModule { }
