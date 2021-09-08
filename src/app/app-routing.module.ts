@@ -25,6 +25,14 @@ const routes: Routes = [
         (value) => value.ShoppingCartModule
       ),
   },
+
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./membership/components/signup/signup.module').then(
+        (m) => m.SignupModule
+      ),
+  },
   {
     path: 'login',
     loadChildren: () =>
@@ -33,12 +41,13 @@ const routes: Routes = [
       ),
   },
 
-  { path: 'check-out',
-  loadChildren: () =>
-    import('./shopping/components/check-out/check-out.module').then(
-      (value) => value.CheckOutModule
-    ),
-},
+  {
+    path: 'check-out',
+    loadChildren: () =>
+      import('./shopping/components/check-out/check-out.module').then(
+        (value) => value.CheckOutModule
+      ),
+  },
   {
     path: 'order-success/:id',
     loadChildren: () =>
@@ -51,12 +60,13 @@ const routes: Routes = [
     component: OrderDetailsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'my/orders',
-  loadChildren: () =>
-    import('./shopping/components/my-orders/my-orders.module').then(
-      (value) => value.MyOrdersModule
-    ),
-},
+  {
+    path: 'my/orders',
+    loadChildren: () =>
+      import('./shopping/components/my-orders/my-orders.module').then(
+        (value) => value.MyOrdersModule
+      ),
+  },
 
   {
     path: 'admin/products/new',
