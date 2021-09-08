@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { OrderDetailsComponent } from './components/order-details/order-details.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from '../../services/auth.guard';
+import { OrderDetailsComponent } from './order-details.component';
 
 const sharedRoutes: Routes = [
   { path: '', component: OrderDetailsComponent, canActivate: [AuthGuard] },
@@ -11,6 +10,6 @@ const sharedRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(sharedRoutes)],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard]
 })
-export class SharedRoutingModule {}
+export class OrderDetailsRoutingModule { }
