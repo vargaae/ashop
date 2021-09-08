@@ -9,3 +9,7 @@ img {
   border: 3px solid green;
   max-height: 25rem;
 }
+
+button {
+  margin-left: 8px;
+}
