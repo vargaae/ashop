@@ -1,50 +1,19 @@
-<div @fade>
-  <mat-card>
-    <mat-card-title>Login</mat-card-title>
-    <br />
-    <mat-card-content fxLayout="column" fxLayoutAlign="space-around center">
-      <button
-        (click)="loginWithGoogle()"
-        mat-raised-button
-        style="padding: 1rem"
-      >
-        <img
-          src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg"
-          style="width: 50px; height: 30px"
-        />
-        Sign in with Google
-      </button>
-
-      <br />
-      <br />
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput type="email" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput type="password" />
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <div>
-        <button mat-raised-button>Login</button>
-      </div>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-Login
-<br />
-<br />
 <button mat-raised-button color="primary" routerLink="/home">
   <mat-icon>home</mat-icon>
   <span>Home</span>
 </button>
 
-<mat-card>
-  <!-- Calling GoogleAuth Api from AuthService -->
+<div @fade>
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <br />
+    For Testing the Application as an Admin User,
+  you can Sign in as:<br>
+  <strong>andrasorganicshop@outlook.com<br>admin1</strong>
+<br />
+<br />or
+<br />
+<br />
   <button
         (click)="loginWithGoogle()"
         mat-raised-button
@@ -56,9 +25,13 @@ Login
         />
         Sign in with Google
       </button>
+      <br />
+      <br />
   <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
     <p>
-      <mat-form-field appearance="outline">
+      <mat-form-field
+          style="width: 16rem;"
+          >
         <mat-label>Email</mat-label>
         <input
           autocomplete="off"
@@ -68,9 +41,9 @@ Login
           placeholder="andrasorganicshop@outlook.com"
         />
       </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
+      <mat-form-field
+          style="width: 16rem;"
+          >
         <mat-label>Password</mat-label>
         <input
           autocomplete="off"
@@ -87,12 +60,8 @@ Login
 
     <button mat-raised-button color="primary">Login</button>
   </form>
-  For Testing the Application as an Admin User,<br>
-  you can Sign in as<br>
-  andrasorganicshop@outlook.com<br>
-  admin1
 </mat-card>
-
+</div>
 <div
   class="progressIndicator"
   [style.display]="isProgressVisible ? 'inline' : 'none'"
