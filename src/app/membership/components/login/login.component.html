@@ -7,60 +7,51 @@
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <br />
-    For Testing the Application as an Admin User,
-  you can Sign in as:<br>
-  <strong>andrasorganicshop@outlook.com<br>admin1</strong>
-<br />
-<br />or
-<br />
-<br />
-  <button
-        (click)="loginWithGoogle()"
-        mat-raised-button
-        style="padding: 1rem"
-      >
-        <img
-          src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg"
-          style="width: 50px; height: 30px"
-        />
-        Sign in with Google
-      </button>
-      <br />
-      <br />
-  <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
-    <p>
-      <mat-form-field
-          style="width: 16rem;"
-          >
-        <mat-label>Email</mat-label>
-        <input
-          autocomplete="off"
-          formControlName="email"
-          type="email"
-          matInput
-          placeholder="andrasorganicshop@outlook.com"
-        />
-      </mat-form-field>
-      <mat-form-field
-          style="width: 16rem;"
-          >
-        <mat-label>Password</mat-label>
-        <input
-          autocomplete="off"
-          formControlName="password"
-          type="password"
-          matInput
-          placeholder="admin1"
-        />
-      </mat-form-field>
-    </p>
-    <div *ngIf="firebaseErrorMessage != ''" class="error-style">
-      <span>{{ firebaseErrorMessage }}</span>
-    </div>
+    For Testing the Application as an Admin User, you can Sign in as:<br />
+    <strong>andrasorganicshop@outlook.com<br />admin1</strong>
+    <br />
+    <br />or
+    <br />
+    <br />
+    <button (click)="loginWithGoogle()" mat-raised-button style="padding: 1rem">
+      <img
+        src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg"
+        style="width: 50px; height: 30px"
+      />
+      Sign in with Google
+    </button>
+    <br />
+    <br />
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
+      <p>
+        <mat-form-field style="width: 16rem">
+          <mat-label>Email</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="email"
+            type="email"
+            matInput
+            placeholder="andrasorganicshop@outlook.com"
+          />
+        </mat-form-field>
+        <mat-form-field style="width: 16rem">
+          <mat-label>Password</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="password"
+            type="password"
+            matInput
+            placeholder="admin1"
+          />
+        </mat-form-field>
+      </p>
+      <div *ngIf="firebaseErrorMessage != ''" class="error-style">
+        <span>{{ firebaseErrorMessage }}</span>
+      </div>
 
-    <button mat-raised-button color="primary">Login</button>
-  </form>
-</mat-card>
+      <button mat-raised-button color="primary">Login</button>
+    </form>
+  </mat-card>
 </div>
 <div
   class="progressIndicator"
