@@ -23,8 +23,12 @@ export class AdminOrdersComponent implements OnInit {
   ngOnInit() {
     this.orders$ = this.authService.user$
       .pipe(switchMap(user => {
-        return this.orderService.getOrdersByUser(user.uid);
+        return this.orderService.getAll();
       }));
+    // this.orders$ = this.authService.user$
+    //   .pipe(switchMap(user => {
+    //     return this.orderService.getOrdersByUser(user.uid);
+    //   }));
   }
 
   deleteOrder(orderCustomer: string, orderId: string, orderDate: Date) {

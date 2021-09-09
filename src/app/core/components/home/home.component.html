@@ -1,81 +1,86 @@
 <!-- Animated welcome text -->
 <mat-card>
-<div @fade>
-  Dear {{ (user | async)?.displayName }}
-  <ng-container *ngIf="user$ | async as user; else anonymousUser">
-    {{ user.displayName }}
-  </ng-container>
-  <ng-template #anonymousUser>
-    {{ anonymous }},
-    Please login to place your orders after shopping: <a mat-button routerLink="/login">Click here to Login</a><br />
-  </ng-template>
-  <h4>
-    <a mat-button routerLink="/products">Click here to Start the Shopping</a>
-  </h4>
-  <img
-    src="../../../../assets/images/fruit-1131172_960_720.jpg"
-    class="img-fluid"
-    style="border-radius: 4px"
-  />
-  <br />
-  <h4>
-    Welcome to A-OrganicShop Application!
-    <hr />
-  </h4>
-</div>
-<div @slide>
-    <br />
-  <strong>{{ (user | async)?.displayName }}</strong>
-  <ng-container *ngIf="user$ | async as user">
+  <div @fade>
+    Dear {{ (user | async)?.displayName }}
+    <ng-container *ngIf="user$ | async as user; else anonymousUser">
+      {{ user.displayName }}
+    </ng-container>
+    <ng-template #anonymousUser>
+      {{ anonymous }},<br />
+      Please login with your Google Account or Sign Up with Email to place your
+      orders after shopping:
+      <button mat-raised-button color="primary" routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-raised-button color="primary" routerLink="/signup">
+        <mat-icon>person_add</mat-icon>
+        <span>Sign up</span>
+      </button>
+      <br />
+    </ng-template>
+    <br /><br />
     <h4>
-      <strong>{{ user.displayName }}</strong> You are logged in successfully,<br />
-      so after shopping, you will be able to place order.<br />
+      <button mat-raised-button color="accent" routerLink="/products">
+        Click here to Start the Shopping
+      </button>
     </h4>
-  </ng-container>
-  <ng-container *ngIf="(afAuth.user | async)">
-    <mat-icon>check_circle</mat-icon>
-    <span>User is logged in</span>
-  </ng-container>
-  <ng-container *ngIf="!(afAuth.user | async)">
-    <mat-icon>do_not_disturb</mat-icon>
-    <span>User is not logged in</span>
-  </ng-container>
-</div>
+    <img
+      src="../../../../assets/images/fruit-1131172_960_720.jpg"
+      class="img-fluid"
+      style="border-radius: 4px"
+    />
+    <br />
+    <h4>
+      Welcome to A-OrganicShop Application!
+      <hr />
+    </h4>
+  </div>
+  <div @slide>
+    <br />
+    <strong>{{ (user | async)?.displayName }}</strong>
+    <ng-container *ngIf="user$ | async as user">
+      <h4>
+        <strong>{{ user.displayName }}</strong> You are logged in
+        successfully,<br />
+        so after shopping, you will be able to place order.<br />
+      </h4>
+    </ng-container>
+    <ng-container *ngIf="afAuth.user | async">
+      <!-- <button mat-raised-button color="primary" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Log out</span>
+  </button> -->
+      <mat-icon>check_circle</mat-icon>
+      <span>User is logged in</span>
+      <br />
+      <br />
+      <section>
+        <button mat-raised-button color="primary" routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        <button mat-raised-button color="primary" routerLink="/admin">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Admin Dashboard</span>
+        </button>
+      </section>
+    </ng-container>
+    <ng-container *ngIf="!(afAuth.user | async)">
+      <mat-icon>do_not_disturb</mat-icon>
+      <span>User is not logged in</span>
+    </ng-container>
+  </div>
 </mat-card>
 <div @fade>
   <section>
-    <button mat-raised-button color="primary" routerLink="/login">
-        <mat-icon>login</mat-icon>
-        <span>Login</span>
-    </button>
-    <button mat-raised-button color="primary" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Log out</span>
-    </button>
-    <button mat-raised-button color="primary" routerLink="/signup">
-        <mat-icon>person_add</mat-icon>
-        <span>Sign up</span>
-    </button>
-<br>
-<br>
     <button mat-raised-button color="primary" routerLink="/forgot-password">
-        <mat-icon>help_outline</mat-icon>
-        <span>Forgot password</span>
+      <mat-icon>help_outline</mat-icon>
+      <span>Forgot password</span>
     </button>
     <button mat-raised-button color="primary" routerLink="/verify-email">
-        <mat-icon>help_outline</mat-icon>
-        <span>Resend email verification</span>
+      <mat-icon>help_outline</mat-icon>
+      <span>Resend email verification</span>
     </button>
-</section>
-<br>
-<section>
-    <button mat-raised-button color="primary" routerLink="/dashboard">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-    </button>
-    <button mat-raised-button color="primary" routerLink="/admin">
-        <mat-icon>admin_panel_settings</mat-icon>
-        <span>Admin Dashboard</span>
-    </button>
-</section>
+  </section>
 </div>

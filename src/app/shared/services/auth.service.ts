@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { AppUser } from '../models/app-user';
+import { User } from '../models/user';
 import { UserService } from './user.service';
 
 @Injectable({

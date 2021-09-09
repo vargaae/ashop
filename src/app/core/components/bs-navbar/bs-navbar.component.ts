@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { fade, slide } from '../../../animations';
 import { AppUser } from '../../../shared/models/app-user';
@@ -18,9 +18,11 @@ import { ShoppingCartService } from '../../../shared/services/shopping-cart.serv
 })
 export class BsNavbarComponent implements OnInit {
     //EMAIL SIGNED IN USER
-  user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
+    user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
+    emailSignInSubscription: Subscription;
     //GOOGLE SIGN IN APPUSER
   appUser: AppUser;
+  googleSignInSubscription: Subscription;
 
   cart$: Observable<ShoppingCart>;
 
@@ -45,7 +47,6 @@ export class BsNavbarComponent implements OnInit {
         }
     });
     //GOOGLE SIGN IN APPUSER
-
     this.auth.appUser$
       .subscribe(appUser => this.appUser = appUser);
     this.cart$ = await this.shoppingCartService.getCart();
@@ -53,5 +54,7 @@ export class BsNavbarComponent implements OnInit {
 
   logout() {
     this.auth.logoutUser();
+    this.emailSignInSubscription.unsubscribe();
+    this.googleSignInSubscription.unsubscribe();
 }
 }

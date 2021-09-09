@@ -1,23 +1,37 @@
 Admin Dashboard
-
-<br>
-<br>
+<br />
+<br />
 <button mat-raised-button color="primary" routerLink="/home">
-    <mat-icon>home</mat-icon>
-    <span>Home</span>
+  <mat-icon>home</mat-icon>
+  <span>Home</span>
 </button>
-
-
-<br>
-<br>
-
+<mat-card>
 <div *ngIf="(user | async)?.accountType == 'admin'; else notAdmin">
-    hello admin!
-    <br>
-    You can access to the application's all functions: Manage Products and Manage Orders.
-    <!-- TODO: this is a simple test for admin status. a more rigorous test is to edit the auth.guard.ts file :) -->
+  Hello Admin!
+  <br />
+  <br />
+
+  <br />
+  You can access to the application's all admin functions:
+  <br />
+  <br />
+
+  <section>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/admin/admin-products"
+    >
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Manage Products</span>
+    </button>
+    <button mat-raised-button color="primary" routerLink="/admin/admin-orders">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Manage Orders</span>
+    </button>
+  </section>
+  <br />
 </div>
 
-<ng-template #notAdmin>
-    Not admin
-</ng-template>
+<ng-template #notAdmin> Not admin </ng-template>
+</mat-card>

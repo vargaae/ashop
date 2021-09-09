@@ -5,16 +5,19 @@ import { map } from 'rxjs/operators';
 import { Order } from '../models/order';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
   userId: string;
 
-  constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private shoppingCartService: ShoppingCartService
+  ) {}
 
   async placeOrder(order) {
     // -> placeOrder() evolved from this storing order without clearing the cart:
-  // storeOrder(order) {
+    // storeOrder(order) {
     // return this.db.list('/orders').push(order);
     // this returns a promise so we're going to return this to the outside because later we want to get the key of this new order and redirect the user to the order success page
 
@@ -29,6 +32,21 @@ export class OrderService {
     return this.db.list('/orders').valueChanges();
   }
 
+  getAll() {
+    return this.db
+      .list<Order>('/orders')
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((p) => {
+            const data = p.payload.val() as Order;
+            const id = p.payload.key;
+            return { id, ...data };
+          })
+        )
+      );
+  }
+
   // getOrdersByUser(userId: string) {
   //   return this.db.list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
   //     .snapshotChanges().pipe(map(data => {
@@ -41,17 +59,20 @@ export class OrderService {
   // }
 
   getOrdersByUser(userId: string) {
-    return this.db.list<Order>('/orders', ref => ref.orderByChild('userId').equalTo(userId))
-    .snapshotChanges()
-    .pipe(
-        map(changes =>
-            changes.map(o => {
-                const data = o.payload.val() as Order;
-                const key = o.payload.key;
-                return { key, ...data };
-            })
+    return this.db
+      .list<Order>('/orders', (ref) =>
+        ref.orderByChild('userId').equalTo(userId)
+      )
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((o) => {
+            const data = o.payload.val() as Order;
+            const key = o.payload.key;
+            return { key, ...data };
+          })
         )
-    );
+      );
   }
 
   // getOrders() {

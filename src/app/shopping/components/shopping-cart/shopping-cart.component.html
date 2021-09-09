@@ -2,23 +2,22 @@
 
 <mat-card class="shopping-cart-card">
   <mat-card-header>
-    <mat-card-title class="title">
-      Shopping Cart
-      <mat-icon aria-hidden="true">shopping_cart</mat-icon>
-      <hr>
+    <!-- <div class="card" *ngIf="cart$ | async as cart"> -->
+      <div @slide class="row col-10">
+        <!-- <div @slide class="card-body"> -->
+          <mat-card-subtitle>
+            <button mat-button style="cursor: default;">Shopping Cart
+      <mat-icon aria-hidden="true">shopping_cart</mat-icon></button>
       <button
+      style="float: right;"
       mat-raised-button color="accent"
       class="btn btn-secondary"
         @slide
         routerLink="/products" id="shopping">
         Continue Shopping
       </button>
-    </mat-card-title>
-    <!-- <div class="card" *ngIf="cart$ | async as cart"> -->
-      <div @slide class="row col-10">
-        <!-- <div @slide class="card-body"> -->
-          <mat-card-subtitle>
-            <h3>
+      <hr>
+      <h3>
     You have {{ cart.totalItemsCount }} items in your shopping cart.
     <button @slide
     *ngIf="cart.items.length"

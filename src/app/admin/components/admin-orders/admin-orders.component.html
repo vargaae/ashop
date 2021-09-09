@@ -20,14 +20,14 @@
               >, {{ order.shipping.addressLine2 }}</span
             >
           </td>
-          <td>{{ order.key }}</td>
+          <td>{{ order.id }}</td>
           <td>{{ order.datePlaced | date: "medium" }}</td>
           <td>
             <div class="btn-group">
               <button
                 mat-mini-fab
                 color="primary"
-                [routerLink]="['/order-details', order.key]"
+                [routerLink]="['/order-details', order.id]"
               >
                 <i class="fa fa-eye"></i>
               </button>
@@ -35,7 +35,7 @@
                 mat-mini-fab
                 color="warn"
                 (click)="
-                  deleteOrder(order.shipping.name, order.key, order.datePlaced)
+                  deleteOrder(order.shipping.name, order.id, order.datePlaced)
                 "
               >
                 <i class="fa fa-trash"></i>

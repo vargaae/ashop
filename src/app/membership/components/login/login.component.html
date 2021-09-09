@@ -7,12 +7,10 @@
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <br />
-    For Testing the Application as an Admin User, you can Sign in as:<br />
-    <strong>andrasorganicshop@outlook.com<br />admin1</strong>
+    For Testing the Application as an EndUser, you can Sign in:
     <br />
-    <br />or
-    <br />
-    <br />
+    <!-- <strong>andrasorganicshop@outlook.com<br />admin1</strong> -->
+
     <button (click)="loginWithGoogle()" mat-raised-button style="padding: 1rem">
       <img
         src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg"
@@ -21,7 +19,11 @@
       Sign in with Google
     </button>
     <br />
+    <br />or
     <br />
+    <br />
+    Sign in as an Admin User:
+
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
       <p>
         <mat-form-field style="width: 16rem">
