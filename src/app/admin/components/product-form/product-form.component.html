@@ -27,7 +27,6 @@
       <mat-form-field class="product-full-width" appearance="fill" @slide>
         <mat-label @fade for="price">Price (/kg)</mat-label>
 
-        <!-- <span class="input-group-text">€</span> -->
         <input
           matInput
           [(ngModel)]="product.price"
@@ -87,41 +86,6 @@
           >
         </mat-error>
       </mat-form-field>
-
-      <!-- TODO: TimeStamp
-            <mat-form-field class="product-full-width" appearance="fill" @slide>
-            <mat-label @fade for="date">Date</mat-label>
-                <input
-                    matInput
-                    [(ngModel)]="product.date"
-                    name="date"
-                    #title="ngModel"
-                    id="title"
-                    type="text"
-                    >
-
-            </mat-form-field> -->
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input
-            matInput
-            (focus)="picker.open()"
-            [min]="minDate"
-            [max]="maxDate"
-            [matDatepicker]="picker"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker touchUi="true"></mat-datepicker>
-        </mat-form-field>
-      </p>
-
-      <!-- <br> FOR DEVELOPING TO SEE THE VALUES:
-            <p>{{ f.value | json }}</p>
-            <br> -->
 
       <button mat-raised-button color="primary" @fade [disabled]="!f.valid">
         Save

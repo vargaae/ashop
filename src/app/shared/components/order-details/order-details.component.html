@@ -35,18 +35,10 @@
                 item.product.price * item.quantity | currency: "EUR":"symbol"
               }}
             </div>
-            <!-- <div class="float-end">
-              {{
-                order.items.product.price * order.items.quantity | currency: "EUR":"symbol"
-              }}
-            </div> -->
           </li>
         </ul>
         <div *ngIf="order.items as items">
-          <div class="float-end">
-              <!-- <strong>TOTAL: {{ totalPrice() | currency:'EUR':'symbol' }}</strong> -->
-          </div>
-
+          <div class="float-end"></div>
         </div>
       </div>
     </div>

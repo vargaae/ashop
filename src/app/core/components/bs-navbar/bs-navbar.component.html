@@ -24,7 +24,10 @@
               {{ (user | async)?.displayName }}{{ appUser.name }}
             </strong>
           </button>
-          <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+          <ul
+            ngbDropdownMenu
+            class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+          >
             <li>
               <a class="dropdown-item" routerLink="/products"
                 >Go Back Shopping</a
@@ -36,7 +39,6 @@
               >
             </li>
             <ng-container *ngIf="(user | async)?.accountType == 'admin'">
-              <!-- <ng-container *ngIf="appUser.isAdmin"> -->
               <li>
                 <a
                   ngbDropdownItem

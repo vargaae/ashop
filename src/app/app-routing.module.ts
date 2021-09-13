@@ -114,7 +114,10 @@ const routes: Routes = [
   {
     path: 'admin/admin-orders',
     component: AdminOrdersComponent,
-    canActivate: [AuthGuard, AdminAuthGuard],
+    loadChildren: () =>
+      import('./admin/components/admin-orders/admin-orders.module').then(
+        (value) => value.AdminOrdersModule
+      ),
   },
 
   { path: '**', component: HomeComponent },

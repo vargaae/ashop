@@ -1,73 +1,67 @@
-<div @fade><h3>Manage Products</h3>
+<div @fade>
+  <h3>Manage Products</h3>
 
-<p>
-  <button mat-raised-button color="primary" routerLink="/admin/products/new">New Product</button>
-</p>
-<form class="search-form">
-<mat-form-field class="search-full-width" appearance="fill">
-  <mat-label>Search...</mat-label>
-  <input
-    #query
-    (keyup)="filter(query.value)"
-    matInput
-    type="search"
-    placeholder="Type a product's name to filter them"
-    >
-  <button *ngIf="query.value" matSuffix mat-icon-button aria-label="Search">
-    <mat-icon>search</mat-icon>
-  </button>
-</mat-form-field>
-</form>
-
+  <p>
+    <button mat-raised-button color="primary" routerLink="/admin/products/new">
+      New Product
+    </button>
+  </p>
+  <form class="search-form">
+    <mat-form-field class="search-full-width" appearance="fill">
+      <mat-label>Search...</mat-label>
+      <input
+        #query
+        (keyup)="filter(query.value)"
+        matInput
+        type="search"
+        placeholder="Type a product's name to filter them"
+      />
+      <button *ngIf="query.value" matSuffix mat-icon-button aria-label="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
 </div>
 <div @fade>
-<data-table
-  [items]="items"
-  [itemCount]="itemCount"
-  (reload)="reloadItems($event)"
+  <data-table
+    [items]="items"
+    [itemCount]="itemCount"
+    (reload)="reloadItems($event)"
   >
-  <data-table-column
-    [property]="'imageUrl'"
-  >
-  <ng-template #dataTableCell let-item="item">
-    <img [src]="item.imageUrl" style="width: 80px;">
-  </ng-template>
-  </data-table-column>
+    <data-table-column [property]="'imageUrl'">
+      <ng-template #dataTableCell let-item="item">
+        <img [src]="item.imageUrl" style="width: 80px" />
+      </ng-template>
+    </data-table-column>
 
-  <data-table-column
-    [property]="'title'"
-    [header]="'Title'"
-    [sortable]="true"
-    [resizable]="true"
-  >
-  <ng-template #dataTableCell let-item="item">
-    {{ item.title }}
-  </ng-template>
-  </data-table-column>
+    <data-table-column
+      [property]="'title'"
+      [header]="'Title'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+      <ng-template #dataTableCell let-item="item">
+        {{ item.title }}
+      </ng-template>
+    </data-table-column>
 
-  <data-table-column
-    [property]="'price'"
-    [header]="'Price (/kg)'"
-    [sortable]="true"
-    [resizable]="true"
-  >
-    <ng-template #dataTableCell let-item="item">
-      {{ item.price | currency:'EUR':'symbol' }}
-    </ng-template>
-  </data-table-column>
+    <data-table-column
+      [property]="'price'"
+      [header]="'Price (/kg)'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+      <ng-template #dataTableCell let-item="item">
+        {{ item.price | currency: "EUR":"symbol" }}
+      </ng-template>
+    </data-table-column>
 
-  <data-table-column
-    [property]="'id'"
-  >
-    <ng-template #dataTableCell let-item="item">
-      <a
-        class="nav-link"
-        [routerLink]="['/admin/products/', item.id]"
-        >
-        Edit
-      </a>
-    </ng-template>
-  </data-table-column>
-
-</data-table>
+    <data-table-column [property]="'id'">
+      <ng-template #dataTableCell let-item="item">
+        <a class="nav-link" [routerLink]="['/admin/products/', item.id]">
+          Edit
+        </a>
+      </ng-template>
+    </data-table-column>
+  </data-table>
 </div>

@@ -5,14 +5,12 @@
 
 .shopping-cart-card {
   padding-bottom: 2rem;
-  padding-right: 2rem;;
+  padding-right: 2rem;
 }
 
 #clearcart {
   float: right;
 }
-
-
 
 .thumbnail {
   width: 80px;
@@ -20,10 +18,6 @@
   border-radius: 100%;
   background-size: cover;
 }
-
-/* .card {
-  margin-bottom: 80px;
-} */
 
 button {
   margin: 8px 8px 8px 0;

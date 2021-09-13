@@ -1,89 +1,98 @@
 <ng-container *ngIf="cart$ | async as cart">
-
-<mat-card class="shopping-cart-card">
-  <mat-card-header>
-    <!-- <div class="card" *ngIf="cart$ | async as cart"> -->
+  <mat-card class="shopping-cart-card">
+    <mat-card-header>
       <div @slide class="row col-10">
-        <!-- <div @slide class="card-body"> -->
-          <mat-card-subtitle>
-            <button mat-button style="cursor: default;">Shopping Cart
-      <mat-icon aria-hidden="true">shopping_cart</mat-icon></button>
+        <mat-card-subtitle>
+          <button mat-button style="cursor: default">
+            Shopping Cart <mat-icon aria-hidden="true">shopping_cart</mat-icon>
+          </button>
+          <button
+            style="float: right"
+            mat-raised-button
+            color="accent"
+            class="btn btn-secondary"
+            @slide
+            routerLink="/products"
+            id="shopping"
+          >
+            Continue Shopping
+          </button>
+          <hr />
+          <h3>
+            You have {{ cart.totalItemsCount }} items in your shopping cart.
+            <button
+              @slide
+              *ngIf="cart.items.length"
+              (click)="clearCart()"
+              class="float-right btn btn-light btn-sm"
+              id="clearcart"
+            >
+              Clear Shopping Cart
+            </button>
+          </h3>
+        </mat-card-subtitle>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Product</th>
+              <th class="text-center" style="width: 230px">Quantity</th>
+              <th class="text-end" style="width: 200px">Price (/kg)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart.items">
+              <td></td>
+              <td>
+                <div
+                  [style.backgroundImage]="'url(' + item.imageUrl + ')'"
+                  class="thumbnail"
+                ></div>
+              </td>
+              <td>
+                {{ item.title }}
+              </td>
+              <td>
+                <ng-container *ngIf="filteredProducts">
+                  <div>
+                    <shopping-quantity
+                      [product]="item"
+                      [shopping-cart]="cart"
+                    ></shopping-quantity>
+                  </div>
+                </ng-container>
+              </td>
+              <td class="text-end">
+                {{ item.totalPrice | currency: "EUR":"symbol" }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th class="text-end">
+                {{ cart.totalPrice | currency: "EUR":"symbol" }}
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </mat-card-header>
+    <mat-card-actions>
       <button
-      style="float: right;"
-      mat-raised-button color="accent"
-      class="btn btn-secondary"
+        mat-raised-button
+        color="primary"
+        class="btn btn-secondary"
         @slide
-        routerLink="/products" id="shopping">
-        Continue Shopping
+        *ngIf="cart.items.length"
+        routerLink="/check-out"
+      >
+        Check Out
       </button>
-      <hr>
-      <h3>
-    You have {{ cart.totalItemsCount }} items in your shopping cart.
-    <button @slide
-    *ngIf="cart.items.length"
-    (click)="clearCart()"
-    class="float-right btn btn-light btn-sm" id="clearcart">
-    Clear Shopping Cart
-  </button>
-  <!-- we want to render this button only if we have at least one item in our shopping cart -->
-
-</h3>
-</mat-card-subtitle>
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>Product</th>
-        <th class="text-center" style="width: 230px">Quantity</th>
-        <th class="text-end" style="width: 200px">Price (/kg)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td></td>
-        <td>
-          <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail"></div>
-        </td>
-        <td>
-          {{ item.title }}
-        </td>
-        <td>
-          <!-- {{ item.quantity }} -->
-          <ng-container *ngIf="filteredProducts">
-            <div>
-              <shopping-quantity [product]="item" [shopping-cart]="cart"></shopping-quantity>
-            </div>
-          </ng-container>
-        </td>
-        <td class="text-end">{{ item.totalPrice | currency:'EUR':'symbol' }}</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th class="text-end">{{ cart.totalPrice | currency:'EUR':'symbol' }}</th>
-      </tr>
-    </tfoot>
-  </table>
-</div>
-</mat-card-header>
-
-<mat-card-actions>
-  <button
-    mat-raised-button color="primary"
-    class="btn btn-secondary"
-    @slide
-    *ngIf="cart.items.length"
-    routerLink="/check-out">
-    Check Out
-  </button>
-<!-- we want to render this button only if we have at least one item in our shopping cart -->
-</mat-card-actions>
-
-</mat-card>
-
+    </mat-card-actions>
+  </mat-card>
 </ng-container>

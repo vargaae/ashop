@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.authService.userLoggedIn) {                       // if the user's logged in, navigate them to the dashboard (NOTE: don't use afAuth.currentUser -- it's never null)
+        if (this.authService.userLoggedIn) {
             this.router.navigate(['/dashboard']);
         }
 
@@ -33,17 +33,17 @@ export class SignupComponent implements OnInit {
     }
 
     signup() {
-        if (this.signupForm.invalid)                            // if there's an error in the form, don't submit it
+        if (this.signupForm.invalid)
             return;
 
         this.isProgressVisible = true;
         this.authService.signupUser(this.signupForm.value).then((result) => {
-            if (result == null)                                 // null is success, false means there was an error
+            if (result == null)
                 this.router.navigate(['/dashboard']);
             else if (result.isValid == false)
                 this.firebaseErrorMessage = result.message;
 
-            this.isProgressVisible = false;                     // no matter what, when the auth service returns, we hide the progress indicator
+            this.isProgressVisible = false;
         }).catch(() => {
             this.isProgressVisible = false;
         });

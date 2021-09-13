@@ -28,7 +28,6 @@ export class VerifyEmailComponent implements OnInit {
 
   ngOnInit(): void {
     this.afAuth.authState.subscribe((user) => {
-      // if the user is logged in, update the form value with their email address
       if (user) {
         this.email = user.email;
       }
@@ -36,12 +35,11 @@ export class VerifyEmailComponent implements OnInit {
   }
 
   resendVerificationEmail() {
-    this.isProgressVisible = true; // show the progress indicator as we start the Firebase password reset process
+    this.isProgressVisible = true;
 
     this.authService.resendVerificationEmail().then((result) => {
-      this.isProgressVisible = false; // no matter what, when the auth service returns, we hide the progress indicator
+      this.isProgressVisible = false;
       if (result == null) {
-        // null is success, false means there was an error
         console.log('verification email resent...');
         this.mailSent = true;
       } else if (result.isValid == false) {

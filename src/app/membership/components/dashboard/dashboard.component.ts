@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
-    user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
+    user: Observable<any>;
 
     constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
         this.user = null;

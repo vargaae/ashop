@@ -14,12 +14,8 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class AuthService {
-  // START OF EMAIL SIGN IN
-  userLoggedIn: boolean; // other components can check on this variable for the login status of the user
+  userLoggedIn: boolean;
   authState: any;
-  // END OF EMAIL SIGN IN
-
-  // START OF GOOGLE SIGIN
   user$: Observable<firebase.default.User>;
 
   constructor(
@@ -34,7 +30,6 @@ export class AuthService {
     this.userLoggedIn = false;
 
     this.afAuth.onAuthStateChanged((user) => {
-      // set up a subscription to always know the login status of the user
       if (user) {
         this.userLoggedIn = true;
       } else {
@@ -66,15 +61,11 @@ export class AuthService {
     );
   }
 
-  // END OF GOOGLE SIGN IN
-  // START OF EMAIL SIGN IN
-
   loginUser(email: string, password: string): Promise<any> {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('Auth Service: loginUser: success');
-        // this.router.navigate(['/dashboard']);
       })
       .catch((error) => {
         console.log('Auth Service: login error...');
@@ -90,17 +81,15 @@ export class AuthService {
       .then((result) => {
         let emailLower = user.email.toLowerCase();
 
-        this.afs
-          .doc('/users/' + emailLower) // on a successful signup, create a document in 'users' collection with the new user's info
-          .set({
-            accountType: 'endUser',
-            displayName: user.displayName,
-            displayName_lower: user.displayName.toLowerCase(),
-            email: user.email,
-            email_lower: emailLower,
-          });
+        this.afs.doc('/users/' + emailLower).set({
+          accountType: 'endUser',
+          displayName: user.displayName,
+          displayName_lower: user.displayName.toLowerCase(),
+          email: user.email,
+          email_lower: emailLower,
+        });
 
-        result.user.sendEmailVerification(); // immediately send the user a verification email
+        result.user.sendEmailVerification();
       })
       .catch((error) => {
         console.log('Auth Service: signup error', error);
@@ -113,7 +102,6 @@ export class AuthService {
       .sendPasswordResetEmail(email)
       .then(() => {
         console.log('Auth Service: reset password success');
-        // this.router.navigate(['/amount']);
       })
       .catch((error) => {
         console.log('Auth Service: reset password error...');
@@ -124,12 +112,9 @@ export class AuthService {
   }
 
   async resendVerificationEmail() {
-    // verification email is sent in the Sign Up function, but if you need to resend, call this function
     return (await this.afAuth.currentUser)
       .sendEmailVerification()
-      .then(() => {
-        // this.router.navigate(['home']);
-      })
+      .then(() => {})
       .catch((error) => {
         console.log('Auth Service: sendVerificationEmail error...');
         console.log('error code', error.code);
@@ -142,7 +127,7 @@ export class AuthService {
     return this.afAuth
       .signOut()
       .then(() => {
-        this.router.navigate(['/home']); // when we log the user out, navigate them to home
+        this.router.navigate(['/home']);
       })
       .catch((error) => {
         console.log('Auth Service: logout error...');
@@ -166,5 +151,4 @@ export class AuthService {
   getCurrentUser() {
     return this.afAuth.currentUser; // returns user object for logged-in users, otherwise returns null
   }
-  // END OF EMAIL SIGN IN
 }

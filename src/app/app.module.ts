@@ -12,14 +12,10 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { InfiniteScrollComponent } from './infinite-scroll/infinite-scroll.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InfiniteScrollComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -30,10 +26,10 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     DataTableModule.forRoot(),
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
-    NgbModule
+    AngularFireModule.initializeApp(environment.firebase),
+    NgbModule,
   ],
-    providers: [ ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

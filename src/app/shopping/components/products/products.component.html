@@ -1,31 +1,22 @@
-<!-- <ng-container *ngIf="infinite | async as filteredProducts">
-<cdk-virtual-scroll-viewport itemSize="10"> -->
-  <!-- <cdk-virtual-scroll-viewport itemSize="10" (scrolledIndexChange)="nextBatch($event, (filteredProducts[filteredProducts.length - 1].title))"> -->
 <div class="row">
-
   <div @fade class="col-3">
-      <product-filter [category]="category"></product-filter>
-          <!-- we're binding this category input property of our product-filter.component to the category field in our products.component class -->
+    <product-filter [category]="category"></product-filter>
   </div>
-
   <div class="col" *ngIf="cart$ | async as cart">
-
-  <div class="container">
-  <div class="row row-cols-2">
-    <ng-container *ngFor="let product of filteredProducts; let i = index" class="animatedlist">
-    <!-- <ng-container *cdkVirtualFor="let product of filteredProducts; let i = index; trackBy: trackByIdx" class="animatedlist"> -->
-    <div @fade class="col">
-        <product-card [product]="product" [shopping-cart]="cart"></product-card>
-<!-- we're binding this product input property of our product-card.component to the product variable we defined in the ngFor -->
+    <div class="container">
+      <div class="row row-cols-2">
+        <ng-container
+          *ngFor="let product of filteredProducts; let i = index"
+          class="animatedlist"
+        >
+          <div @fade class="col">
+            <product-card
+              [product]="product"
+              [shopping-cart]="cart"
+            ></product-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
-</ng-container>
-</div>
-</div>
-</div>
-</div>
-<!-- </cdk-virtual-scroll-viewport>
-</ng-container> -->
-
-
-
-

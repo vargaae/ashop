@@ -14,9 +14,9 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrls: ['./home.component.css'],
   animations: [fade, slide],
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit {
   anonymous = 'Visitor';
-  user: Observable<any>;              // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
+  user: Observable<any>;
   user$: Observable<firebase.default.User>;
 
   constructor(
@@ -29,15 +29,18 @@ export class HomeComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.afAuth.authState.subscribe(user => {
-        console.log('Dashboard: user', user);
+    this.afAuth.authState.subscribe((user) => {
+      console.log('Dashboard: user', user);
 
-        if (user) {
-            let emailLower = user.email.toLowerCase();
-            this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-        }
+      if (user) {
+        let emailLower = user.email.toLowerCase();
+        this.user = this.firestore
+          .collection('users')
+          .doc(emailLower)
+          .valueChanges();
+      }
     });
-}
+  }
 
   logout(): void {
     this.afAuth.signOut();

@@ -1,95 +1,99 @@
 <form #f="ngForm" (ngSubmit)="placeOrder(f.value)" class="shipping-form">
+  <mat-form-field class="shipping-full-width" appearance="fill">
+    <input
+      matInput
+      [(ngModel)]="shipping.name"
+      name="name"
+      #name="ngModel"
+      required
+      minlength="3"
+      id="name"
+      type="text"
+      placeholder="Your Name"
+    />
+    <mat-label for="name">Name</mat-label>
+    <mat-error *ngIf="name.touched && !name.valid">
+      <mat-error *ngIf="name.errors?.required">Name is required.</mat-error>
+      <mat-error *ngIf="name.errors?.minlength"
+        >Name should be minimum
+        {{ name.errors?.minlength.requiredLength }} characters.</mat-error
+      >
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="shipping-full-width" appearance="fill">
+    <mat-label for="addressLine1">Address</mat-label>
+    <input
+      matInput
+      [(ngModel)]="shipping.addressLine1"
+      name="addressLine1"
+      #addressLine1="ngModel"
+      required
+      minlength="3"
+      id="addressLine1"
+      type="text"
+    />
+
+    <mat-error *ngIf="addressLine1.touched && !addressLine1.valid">
+      <mat-error *ngIf="addressLine1.errors?.required"
+        >Address Line 1 is required.</mat-error
+      >
+      <mat-error *ngIf="addressLine1.errors?.minlength"
+        >Address Line 1 should be minimum
+        {{
+          addressLine1.errors?.minlength.requiredLength
+        }}
+        characters.</mat-error
+      >
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="shipping-full-width" appearance="fill">
+    <mat-label for="addressLine2"></mat-label>
+    <input
+      matInput
+      [(ngModel)]="shipping.addressLine2"
+      name="addressLine2"
+      #addressLine2="ngModel"
+      required
+      minlength="3"
+      id="addressLine2"
+      type="text"
+    />
+
+    <mat-error *ngIf="addressLine2.touched && !addressLine2.valid">
+      <mat-error *ngIf="addressLine2.errors?.required"
+        >Address Line 2 is required.</mat-error
+      >
+      <mat-error *ngIf="addressLine2.errors?.minlength"
+        >Address Line 2 should be minimum
+        {{
+          addressLine2.errors?.minlength.requiredLength
+        }}
+        characters.</mat-error
+      >
+    </mat-error>
+  </mat-form-field>
 
   <mat-form-field class="shipping-full-width" appearance="fill">
     <input
-        matInput
-        [(ngModel)]="shipping.name"
-        name="name"
-        #name="ngModel"
-        required
-        minlength="3"
-        id="name"
-        type="text"
-        placeholder="Your Name"
-        >
-        <mat-label for="name">Name</mat-label>
-    <mat-error
-    *ngIf="name.touched && !name.valid">
-        <mat-error *ngIf="name.errors?.required">Name is required.</mat-error>
-        <mat-error *ngIf="name.errors?.minlength">Name should be minimum {{ name.errors?.minlength.requiredLength }} characters.</mat-error>
- </mat-error>
-</mat-form-field>
-
-<mat-form-field class="shipping-full-width" appearance="fill">
-<mat-label for="addressLine1">Address</mat-label>
-<input
-    matInput
-    [(ngModel)]="shipping.addressLine1"
-    name="addressLine1"
-    #addressLine1="ngModel"
-    required
-    minlength="3"
-    id="addressLine1"
-    type="text"
-    >
-
-<mat-error
-  *ngIf="addressLine1.touched && !addressLine1.valid">
-  <mat-error *ngIf="addressLine1.errors?.required">Address Line 1 is required.</mat-error>
-    <mat-error *ngIf="addressLine1.errors?.minlength">Address Line 1 should be minimum {{ addressLine1.errors?.minlength.requiredLength }} characters.</mat-error>
-
-</mat-error>
-
-</mat-form-field>
-
-
-<mat-form-field class="shipping-full-width" appearance="fill">
-<mat-label for="addressLine2"></mat-label>
-<input
-    matInput
-    [(ngModel)]="shipping.addressLine2"
-    name="addressLine2"
-    #addressLine2="ngModel"
-    required
-    minlength="3"
-    id="addressLine2"
-    type="text"
-    >
-
-<mat-error
-*ngIf="addressLine2.touched && !addressLine2.valid">
-    <mat-error *ngIf="addressLine2.errors?.required">Address Line 2 is required.</mat-error>
-    <mat-error *ngIf="addressLine2.errors?.minlength">Address Line 2 should be minimum {{ addressLine2.errors?.minlength.requiredLength }} characters.</mat-error>
-
-</mat-error>
-
-</mat-form-field>
-
-
-<mat-form-field class="shipping-full-width" appearance="fill">
-<input
-    matInput
-    [(ngModel)]="shipping.city"
-    name="city"
-    #city="ngModel"
-    required
-    minlength="3"
-    id="city"
-    type="text"
-    >
+      matInput
+      [(ngModel)]="shipping.city"
+      name="city"
+      #city="ngModel"
+      required
+      minlength="3"
+      id="city"
+      type="text"
+    />
     <mat-label for="city">City</mat-label>
-<mat-error
-    for="city"
-    *ngIf="city.touched && !city.valid">
-    <mat-error *ngIf="city.errors?.required">City is required.</mat-error>
-</mat-error>
-
-</mat-form-field>
-
-<!-- <br> FOR DEVELOPING TO SEE THE VALUES:
-  <p>{{ f.value | json }}</p>
-  <br> -->
+    <mat-error for="city" *ngIf="city.touched && !city.valid">
+      <mat-error *ngIf="city.errors?.required">City is required.</mat-error>
+    </mat-error>
+  </mat-form-field>
   <p>
-  <button mat-raised-button color="primary" [disabled]="!f.valid">Place Order</button>
-</p>
+    <button mat-raised-button color="primary" [disabled]="!f.valid">
+      Place Order
+    </button>
+  </p>
 </form>

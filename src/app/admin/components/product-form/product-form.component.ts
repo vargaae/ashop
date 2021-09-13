@@ -1,10 +1,11 @@
-import { ProductService } from '../../../shared/services/product.service';
-import { CategoryService } from '../../../shared/services/category.service';
 import { Component, OnInit } from '@angular/core';
-import { fade, slide } from 'src/app/animations';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { fade, slide } from 'src/app/animations';
+
 import { Product } from '../../../shared/models/product';
+import { CategoryService } from '../../../shared/services/category.service';
+import { ProductService } from '../../../shared/services/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -16,10 +17,6 @@ export class ProductFormComponent implements OnInit {
   categories$;
   id;
   product: Product={} as Product;
-  // minDate = new Date(2021, 7, 1);
-  // maxDate = new Date(2021, 8, 1);
-  minDate: Date;
-  maxDate: Date;
 
   constructor(
     private router: Router,
@@ -33,11 +30,6 @@ export class ProductFormComponent implements OnInit {
     if (this.id) this.productService.get(this.id)
         .pipe(take(1))
         .subscribe(p => this.product = p);
-
-    // Set the minimum to January 1st 1 year in the past and December 31st a year in the future.
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 1, 0, 1);
-    this.maxDate = new Date(currentYear + 1, 11, 31);
   }
 
   save(product) {
@@ -52,10 +44,8 @@ export class ProductFormComponent implements OnInit {
 
     this.productService.delete(this.id);
     this.router.navigate(['/admin/admin-products']);
-
   }
 
   ngOnInit(): void  {
   }
-
 }
