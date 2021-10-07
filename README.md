@@ -1,8 +1,10 @@
 # Organic Shop Project - Angular
-=======
 
 <div align="center">
   <img alt="Logo" src="https://portfolio-andras-varga.web.app/assets/images/logo.svg" width="100" />
+</div>
+<div align="center">
+  <img alt="Application image" src="https://portfolio-andras-varga.web.app/assets/img-projects/ashop1-thumbnail.jpg" width="100" />
 </div>
 <br>
 <p align="center">
