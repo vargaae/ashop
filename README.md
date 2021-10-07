@@ -1,7 +1,7 @@
 # Organic Shop Project - Angular
 
 <div align="left">
-  <img alt="Application image" src="https://portfolio-andras-varga.web.app/assets/img-projects/ashop1-thumbnail.jpg" width="200" />
+  <img alt="Application image" src="https://portfolio-andras-varga.web.app/assets/img-projects/ashop1-thumbnail.jpg" width="400" />
 </div>
 <br>
 <p align="center">
@@ -10,9 +10,6 @@
 <p align="center">
   Built with <a href="https://angular.io/" target="_blank">Angular</a> and hosted with <a href="https://firebase.google.com/" target="_blank">Firebase</a>
 </p>
-<div align="center">
-  <img alt="Logo" src="https://portfolio-andras-varga.web.app/assets/images/logo.svg" width="100" />
-</div>
 
 ## Real-time Database
 
