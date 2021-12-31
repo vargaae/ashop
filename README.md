@@ -11,7 +11,7 @@
 ## Course-Project
 
 This Project is an online shopping application which contains a basic e-commerce’s functions from shopping to placing order with using real-time database and authentication.
-Project/Application is based on the Angular Beginner to Pro Course's syllabus
+
 ## Real-time Database
 
 This Project is using Firebase Real-time Database.
