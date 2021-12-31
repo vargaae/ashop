@@ -5,10 +5,10 @@
 </div>
 <br>
 <p align="center">
-  Organic Shop is an e-commerce application - built with <a href="https://angular.io/" target="_blank">Angular</a> and hosted with <a href="https://firebase.google.com/" target="_blank">Firebase</a>
+  Organic Shop is an e-commerce application - built with <a href="https://angular.io/" target="_blank">Angular</a> and hosted with <a href="https://firebase.google.com/" target="_blank">Google Cloud Firebase</a>
 </p>
 
-## Course-Project
+## Project
 
 This Project is an online shopping application which contains a basic e-commerce’s functions from shopping to placing order with using real-time database and authentication.
 
