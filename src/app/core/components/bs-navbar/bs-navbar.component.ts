@@ -34,8 +34,6 @@ export class BsNavbarComponent implements OnInit {
 
   async ngOnInit() {
     this.afAuth.authState.subscribe((user) => {
-      console.log('Dashboard: user', user);
-
       if (user) {
         let emailLower = user.email.toLowerCase();
         this.user = this.firestore

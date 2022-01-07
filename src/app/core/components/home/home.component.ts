@@ -30,8 +30,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.afAuth.authState.subscribe((user) => {
-      console.log('Dashboard: user', user);
-
       if (user) {
         let emailLower = user.email.toLowerCase();
         this.user = this.firestore
