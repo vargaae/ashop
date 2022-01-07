@@ -1,11 +1,11 @@
-# Organic Shop Project - Angular
+# E-commerce Application Project
 
 <div align="center">
   <img alt="Application image" src="https://portfolio-andras-varga.web.app/assets/img-projects/ashop1-thumbnail.jpg" width="400" />
 </div>
 <br>
 <p align="center">
-  Organic Shop is an e-commerce application - built with <a href="https://angular.io/" target="_blank">Angular</a> and hosted with <a href="https://firebase.google.com/" target="_blank">Google Cloud Firebase</a>
+ E-commerce application - built with <a href="https://angular.io/" target="_blank">Angular</a> and hosted with <a href="https://firebase.google.com/" target="_blank">Google Cloud Firebase</a>
 </p>
 
 ## Project
@@ -14,7 +14,7 @@ This Project is an online shopping application which contains a basic e-commerce
 
 ## Real-time Database
 
-This Project is using Firebase Real-time Database.
+This Project is using Google Cloud Firebase Real-time Database.
 
 ## 🛠 Tools, Versions
 Angular 12, Typescript, Firebase, Angular Material and Bootstrap 5
