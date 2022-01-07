@@ -5,8 +5,8 @@
       <thead>
         <tr>
           <th>Customer</th>
-          <th>Address</th>
-          <th>Order ID</th>
+          <th class="table-all">Address</th>
+          <th class="table-all">Order ID</th>
           <th>Order Date</th>
           <th></th>
         </tr>
@@ -14,13 +14,13 @@
       <tbody>
         <tr *ngFor="let order of orders$ | async">
           <td>{{ order.shipping.name }}</td>
-          <td>
+          <td class="table-all">
             {{ order.shipping.addressLine1
             }}<span *ngIf="order.shipping.addressLine2"
               >, {{ order.shipping.addressLine2 }}</span
             >
           </td>
-          <td>{{ order.id }}</td>
+          <td class="table-all">{{ order.id }}</td>
           <td>{{ order.datePlaced | date: "medium" }}</td>
           <td>
             <div class="btn-group">

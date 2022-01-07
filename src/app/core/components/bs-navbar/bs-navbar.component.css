@@ -1,1 +1,14 @@
 .dropdown-item { cursor: pointer; }
+
+.small-screen {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .not-mobile {
+    display: none;
+  }
+  .small-screen {
+    display: block;
+  }
+}
