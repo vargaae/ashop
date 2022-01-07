@@ -1,7 +1,7 @@
 # E-commerce Application Project
 
 <div align="center">
-  <img alt="Application image" src="https://portfolio-andras-varga.web.app/assets/img-projects/ashop1-thumbnail.jpg" width="400" />
+  <img alt="Application image" src="https://portfolio-andras-varga.web.app/assets/img-projects/ashop1-thumbnail.jpg" width="600" />
 </div>
 <br>
 <p align="center">
