@@ -16,8 +16,8 @@ This Project is an online shopping application which contains a basic e-commerce
 
 This Project is using Google Cloud Firebase Real-time Database.
 
-## 🛠 Tools, Versions
-Angular 12, Typescript, Firebase, Angular Material and Bootstrap 5
+## 🛠 Tools
+Angular, Typescript, Firebase, Angular Material and Bootstrap 5
 
 ## 🛠 Installation & Set Up
 
