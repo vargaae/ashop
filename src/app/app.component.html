@@ -1,19 +1,20 @@
-<bs-navbar></bs-navbar>
-
+<!-- <bs-navbar></bs-navbar> -->
 <div class="container">
 
+  
+  <h1>
+    {{title}}
+  </h1>
+  
+  <button type="button" routerLink="/customers">Customers</button>
+  <button type="button" routerLink="/orders">Orders</button>
+  <button type="button" routerLink="/dashboard">Dashboard</button>
+  <button type="button" routerLink="">Home</button>
+  
   <router-outlet></router-outlet>
-
-  <div class="bg-light p-5 rounded">
-    <mat-card class="example-card">
-      <mat-card-content>
-        <h1><i class="fa fa-leaf" aria-hidden="true"></i>
-          Varga Andras' Organic Shop
-        </h1>
-      </mat-card-content>
-      <mat-card-actions style="color:black; text-align: center;">
-        <a href="mailto:andrasernovarga@gmail.com"><button mat-button>Contact</button></a>
-      </mat-card-actions>
-  </mat-card>
-  </div>
+  
+  <h1><i class="fa fa-leaf" aria-hidden="true"></i>
+    Varga Andras Ecommerce 2025
+  </h1>
+  <a href="mailto:andrasernovarga@gmail.com"><button>Contact</button></a>
 </div>

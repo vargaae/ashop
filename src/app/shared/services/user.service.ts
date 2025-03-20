@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import * as firebase from 'firebase/app';
+import { Injectable, Inject } from '@angular/core';
+import { getDatabase, ref, update, get } from '@angular/fire/database';
+import firebase from 'firebase/app';
 
 import { AppUser } from '../models/app-user';
 
@@ -8,16 +8,29 @@ import { AppUser } from '../models/app-user';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private db: AngularFireDatabase) {}
+  // No need for AngularFireDatabase anymore, use Firebase's new methods.
+  constructor() {}
 
-  save(user: firebase.default.User) {
-    this.db.object('/users/' + user.uid).update({
+  save(user: firebase.User) {
+    const db = getDatabase();
+    const userRef = ref(db, 'users/' + user.uid);
+    update(userRef, {
       name: user.displayName,
       email: user.email,
     });
   }
 
-  get(uid: string): AngularFireObject<AppUser> {
-    return this.db.object('/users/' + uid);
+  get(uid: string): Promise<AppUser | null> {
+    const db = getDatabase();
+    const userRef = ref(db, 'users/' + uid);
+    return get(userRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val() as AppUser;
+      } else {
+        return null;
+      }
+    });
+    // get(uid: string): AngularFireObject<AppUser> {
+    //   return this.db.object('/users/' + uid);
   }
 }
