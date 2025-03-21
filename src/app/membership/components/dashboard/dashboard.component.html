@@ -5,15 +5,24 @@ Dashboard
     <mat-icon>home</mat-icon>
     <span>Home</span>
 </button>
-<button mat-raised-button color="accent" routerLink="/products">Click here to Start the Shopping</button>
+<button mat-raised-button color="accent" routerLink="/products"><mat-icon>shop</mat-icon>Click here to Start the Shopping</button>
 
 <mat-card>
-  <mat-list *ngIf="(user | async)">
-    <mat-list-item>Account Type: {{ (user | async)?.accountType? }}</mat-list-item>
-    <mat-list-item>Display Name: {{ (user | async)?.displayName }}</mat-list-item>
-    <mat-list-item>Display Name (lower): {{ (user | async)?.displayName_lower }}</mat-list-item>
-    <mat-list-item>Email: {{ (user | async)?.email? }}</mat-list-item>
-    <mat-list-item>Email (lower): {{ (user | async)?.email_lower }}</mat-list-item>
-    <mat-list-item>Email Verification Status: {{ (afAuth.user | async)?.emailVerified }}</mat-list-item>
+  <mat-list>
+    <mat-list-item *ngIf="user$ | async as user">Account Type: {{ user.accountType }}</mat-list-item>
+    <mat-list-item>Account Type: user?.accountType</mat-list-item>
+    <mat-list-item>Display Name:  (user)?.displayName </mat-list-item>
+    <mat-list-item>Display Name (lower):  (user)?.displayName_lower </mat-list-item>
+    <mat-list-item>Email:  (user)?.email? </mat-list-item>
+    <mat-list-item>Email (lower):  (user)?.email_lower </mat-list-item>
+    <mat-list-item>Email Verification Status: email verified?</mat-list-item>
+  </mat-list>
+  <mat-list *ngIf="user$ | async as user">
+    <mat-list-item>Account Type: {{ user.accountType }}</mat-list-item>
+    <mat-list-item>Display Name: {{ user.displayName }}</mat-list-item>
+    <mat-list-item>Display Name (lower): {{ user.displayName_lower }}</mat-list-item>
+    <mat-list-item>Email: {{ user.email }}</mat-list-item>
+    <mat-list-item>Email (lower): {{ user.email_lower }}</mat-list-item>
+    <mat-list-item>Email Verification Status: {{ user.emailVerified }}</mat-list-item>
 </mat-list>
 </mat-card>

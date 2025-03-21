@@ -1,59 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, getAuth, onAuthStateChanged, User } from '@angular/fire/auth'; // Import modular API for Auth
-import { Firestore, doc, getDoc } from '@angular/fire/firestore'; // Import modular API for Firestore
+import { Auth, User } from '@angular/fire/auth';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user: Observable<User | null>; // Observable that holds the user information
+
+  user$: Observable<any>; // Observable, amely tartalmazza a user adatait, beleértve az accountType-ot
+  // user$: Observable<firebase.default.User>
 
   constructor(private auth: Auth, private firestore: Firestore) {
-    this.user = of(null); // Initialize the user as an Observable
+    this.user$ = of(null); // Kezdőérték beállítása
   }
 
   ngOnInit(): void {
-    const authInstance = getAuth(); // Get the auth instance
-    onAuthStateChanged(authInstance, async (user) => {
-      // Listen to auth state changes
-      if (user) {
-        const emailLower = user.email?.toLowerCase();
-        if (emailLower) {
-          const userDocRef = doc(this.firestore, 'users', emailLower); // Reference to the user's document
-          const userDoc = await getDoc(userDocRef); // Get the document
-          if (userDoc.exists()) {
-            this.user = of(user); // Set the user Observable
-          } else {
-            console.log('No such document!');
-          }
+    this.auth.onAuthStateChanged(async (user) => {
+      console.log("works")
+      if (user && user.email) {
+        const emailLower = user.email.toLowerCase();
+        const userDocRef = doc(this.firestore, 'users', emailLower); // Hivatkozás a Firestore user dokumentumra
+        const userDoc = await getDoc(userDocRef); // Dokumentum lekérése
+        if (userDoc.exists()) {
+          this.user$ = of(userDoc.data()); // Az Observable-t frissítjük a Firestore dokumentum adatával
         }
       } else {
-        this.user = of(null); // If no user is logged in, set the user to null
+        console.log(user) 
+        this.user$ = of(null); // Ha nincs bejelentkezve a felhasználó, null értéket adunk
       }
     });
   }
 }
-
-// export class DashboardComponent implements OnInit {
-
-//     user: Observable<User> | null;
-
-//     // constructor() {
-//     // constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
-//     constructor(private afAuth: Auth, private firestore: Firestore) {
-//         this.user = null;
-//     }
-
-//     ngOnInit(): void {
-//         this.afAuth.authState.subscribe(user => {
-//             if (user) {
-//                 let emailLower = user.email.toLowerCase();
-//                 this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
-//             }
-//         }
-//     );
-//     }
-// }

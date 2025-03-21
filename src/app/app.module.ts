@@ -16,7 +16,7 @@ import { environment } from '../environments/environment';
 // import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { CoreModule } from './core/core.module';
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ProductsModule } from './products/products.module';
@@ -28,7 +28,7 @@ import { ProductsModule } from './products/products.module';
   imports: [
     BrowserModule,
     ProductsModule,
-    // CoreModule,
+    CoreModule,
     SharedModule,
     // AdminModule,
     FormsModule,

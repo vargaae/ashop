@@ -1,9 +1,9 @@
 <mat-card>
   <div @fade>
-    Dear {{ (user | async)?.displayName }}
-    <ng-container *ngIf="user$ | async as user; else anonymousUser">
+    <!-- Dear {{ (user | async)?.displayName }} -->
+    <!-- <ng-container *ngIf="user$ | async as user; else anonymousUser">
       {{ user.displayName }}
-    </ng-container>
+    </ng-container> -->
     <ng-template #anonymousUser>
       {{ anonymous }},<br />
       Please login with your Google Account or Sign Up with Email to place your
@@ -37,7 +37,7 @@
   </div>
   <div @slide>
     <br />
-    <strong>{{ (user | async)?.displayName }}</strong>
+    <!-- <strong>{{ (user | async)?.displayName }}</strong>
     <ng-container *ngIf="user$ | async as user">
       <h4>
         <strong>{{ user.displayName }}</strong> You are logged in
@@ -64,7 +64,7 @@
     <ng-container *ngIf="!(afAuth.user | async)">
       <mat-icon>do_not_disturb</mat-icon>
       <span>User is not logged in</span>
-    </ng-container>
+    </ng-container> -->
   </div>
 </mat-card>
 <div @fade>

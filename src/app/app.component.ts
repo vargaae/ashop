@@ -19,20 +19,20 @@ export class AppComponent {
   // TODO: let the services work
   constructor(
     private userService: UserService,
-    // private auth: AuthService,
+    private auth: AuthService,
     router: Router
   ) {
-    // auth.user$.subscribe((user) => {
-    //   if (!user) return;
+    auth.user$.subscribe((user) => {
+      if (!user) return;
 
-    //   // userService.save(user);//-TODO: check if user is working:
-    //   userService.save(user as firebase.default.User);
+      // userService.save(user);//-TODO: check if user is working:
+      userService.save(user as firebase.default.User);
 
       let returnUrl = localStorage.getItem('returnUrl');
       if (!returnUrl) return;
 
       localStorage.removeItem('returnUrl');
       router.navigateByUrl(returnUrl);
-    // });
+    });
   }
 }
